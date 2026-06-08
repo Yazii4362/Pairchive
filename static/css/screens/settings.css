@@ -1,0 +1,47 @@
+/* ====================================================================
+   12 · 설정 — 페어/책장/데이터/계정 섹션
+   ==================================================================== */
+
+.screen--settings { background: var(--paper-soft); }
+
+.screen--settings .settings-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 22px;
+}
+
+.screen--settings .settings-nav .ed-btn {
+  min-height: 36px;
+  padding: 6px 12px;
+  font-size: 12px;
+}
+
+.screen--settings .settings-profile {
+  flex-direction: row;
+  align-items: center;
+  gap: 14px;
+}
+
+.screen--settings .settings-profile__avatar {
+  width: 56px;
+  height: 56px;
+  border-radius: 14px;
+  background: linear-gradient(135deg, #FFC1EA, #FF6EB4);
+  color: #fff;
+  font-family: var(--font-serif);
+  font-size: 22px;
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+}
+
+.screen--settings .settings-profile__body { flex: 1; }
+.screen--settings .settings-profile__name {
+  font-weight: 600;
+  font-size: 16px;
+  letter-spacing: -0.01em;
+  margin: 0;
+}
+
+.screen--settings .settings-group-label { margin: 18px 4px 8px; }

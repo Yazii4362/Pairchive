@@ -1,0 +1,41 @@
+/* ====================================================================
+   06 · 책 덮기 — 깊은 잉크/네이비 톤, 가운데 책 표지
+   ==================================================================== */
+
+.screen--close-book {
+  background:
+    radial-gradient(120% 60% at 50% 0%, rgba(255,255,255,0.05) 0%, transparent 60%),
+    linear-gradient(180deg, #0F1A38 0%, #050816 100%);
+  color: #F2EFE7;
+}
+
+.screen--close-book .ed-eyebrow { color: rgba(242, 239, 231, 0.55); }
+
+.screen--close-book .close-final {
+  margin: 18px 28px 0;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: var(--r-lg);
+  padding: 16px 18px;
+  color: #F2EFE7;
+}
+
+.screen--close-book .close-final__line {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 17px;
+  line-height: 1.45;
+  margin: 8px 0 0;
+}
+
+.screen--close-book .close-final__sig {
+  margin-top: 10px;
+  font-size: 12px;
+  opacity: 0.55;
+  letter-spacing: 0.01em;
+}
+
+.screen--close-book .close-caption {
+  color: rgba(242, 239, 231, 0.78);
+  padding: 0 28px;
+}

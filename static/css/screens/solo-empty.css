@@ -1,0 +1,14 @@
+/* ====================================================================
+   13 · 1인 모드 빈 서재 — 페어 모드보다 살짝 더 차분한 톤
+   ==================================================================== */
+
+.screen--solo-empty {
+  background: var(--solo-paper);
+  --paper:      var(--solo-paper);
+  --paper-soft: #F2EDDF;
+}
+
+.screen--solo-empty .shelf-new-book--solo {
+  background: linear-gradient(180deg, #E2DCC9 0%, #C9C2AC 100%);
+  border-color: rgba(27, 22, 18, 0.16);
+}

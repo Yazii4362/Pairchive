@@ -1,0 +1,11 @@
+/* ====================================================================
+   08 · 리포트 카드 — 이번 책의 통계 + 와우 인용
+   ==================================================================== */
+
+.screen--report .report-pair {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  justify-content: center;
+  margin-top: 18px;
+}

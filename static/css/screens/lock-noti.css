@@ -1,0 +1,131 @@
+/* ====================================================================
+   10 · 잠금 화면 알림 — 다크 배경 + 큰 시계 + 알림 스택
+   ==================================================================== */
+
+.screen--lock-noti {
+  background:
+    radial-gradient(80% 60% at 50% 15%, rgba(255, 255, 255, 0.06) 0%, transparent 60%),
+    linear-gradient(180deg, #0B1226 0%, #1B2348 55%, #2A3B7A 100%);
+  color: #F2EFE7;
+}
+
+.lock-date {
+  text-align: center;
+  font-size: 14px;
+  letter-spacing: -0.01em;
+  color: rgba(242, 239, 231, 0.85);
+  margin: 4px 0 0;
+}
+
+.lock-time {
+  text-align: center;
+  font-family: var(--font-serif);
+  font-weight: 400;
+  font-size: 88px;
+  letter-spacing: -0.01em;
+  margin: 0;
+  line-height: 1;
+  color: #F2EFE7;
+  text-shadow: 0 4px 18px rgba(0, 0, 0, 0.35);
+}
+
+.lock-notif-stack {
+  margin: 28px 12px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.lock-notif {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 12px 14px;
+  background: rgba(255, 255, 255, 0.16);
+  -webkit-backdrop-filter: blur(20px);
+  backdrop-filter: blur(20px);
+  border-radius: 16px;
+  border: 0.5px solid rgba(255, 255, 255, 0.20);
+}
+
+.lock-notif__icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  background: linear-gradient(135deg, #15203F, #2A3B7A);
+  color: #F2EFE7;
+  display: grid;
+  place-items: center;
+  font-family: var(--font-serif);
+  font-size: 14px;
+  flex-shrink: 0;
+}
+
+.lock-notif__body { flex: 1; min-width: 0; }
+
+.lock-notif__head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 2px;
+}
+
+.lock-notif__app {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: rgba(242, 239, 231, 0.85);
+}
+
+.lock-notif__time {
+  font-size: 11px;
+  color: rgba(242, 239, 231, 0.55);
+}
+
+.lock-notif__title {
+  font-size: 14px;
+  font-weight: 600;
+  color: #F2EFE7;
+  margin: 0 0 1px;
+  letter-spacing: -0.005em;
+}
+
+.lock-notif__msg {
+  font-size: 13px;
+  color: rgba(242, 239, 231, 0.78);
+  line-height: 1.4;
+  margin: 0;
+}
+
+.lock-notif--stacked {
+  margin-top: -36px;
+  margin-left: 6px;
+  margin-right: 6px;
+  transform: scale(0.94);
+  opacity: 0.7;
+  filter: blur(0.5px);
+}
+
+.lock-foot {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 24px 22px;
+  margin-top: auto;
+  color: rgba(242, 239, 231, 0.85);
+}
+
+.lock-foot__icons {
+  display: flex;
+  gap: 14px;
+}
+
+.lock-foot__icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.18);
+  display: grid;
+  place-items: center;
+  font-size: 18px;
+}
