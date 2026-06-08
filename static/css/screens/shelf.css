@@ -1,0 +1,21 @@
+/* ====================================================================
+   02 · 다층 책장 — 두 단(상단 미니/하단 메인) 책장 레이아웃
+   ==================================================================== */
+
+.screen--shelf .shelf-stage--double {
+  margin-top: 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.screen--shelf .shelf-stage--double .shelf--mini {
+  min-height: 80px;
+  gap: 2px;
+}
+
+.screen--shelf .shelf-stage--double .shelf--main {
+  min-height: 200px;
+  margin-top: 24px;
+  gap: 1px;
+}

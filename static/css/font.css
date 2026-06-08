@@ -1,0 +1,49 @@
+/* ====================================================================
+   Pairchive · font.css
+   - Cinzel        : 영문 editorial 헤드라인 (Roman capitals)
+   - Noto Sans KR  : 한글 + 본문 sans-serif
+   ==================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Noto+Sans+KR:wght@300;400;500;600;700&display=swap');
+
+:root {
+  --font-serif:
+    'Cinzel',
+    'Cormorant Garamond',
+    'Iowan Old Style',
+    'Georgia',
+    'Times New Roman',
+    serif;
+
+  --font-sans:
+    'Noto Sans KR',
+    -apple-system,
+    BlinkMacSystemFont,
+    'Apple SD Gothic Neo',
+    'Segoe UI',
+    'Helvetica Neue',
+    sans-serif;
+
+  --font-mono:
+    ui-monospace,
+    'SF Mono',
+    SFMono-Regular,
+    Menlo,
+    Monaco,
+    Consolas,
+    monospace;
+
+  /* ── editorial 타이포 스케일 ─────────────────────────────────────── */
+  --type-hero:        clamp(36px, 11vw, 48px);
+  --type-display:     clamp(28px, 8vw, 34px);
+  --type-title:       22px;
+  --type-headline:    17px;
+  --type-body:        15px;
+  --type-caption:     13px;
+  --type-foot:        11px;
+
+  /* Cinzel ALL CAPS uses heavy letter-spacing for monumental feel */
+  --track-cinzel:     0.04em;
+  --track-eyebrow:    0.32em;
+  --track-tracked:    0.28em;
+}
