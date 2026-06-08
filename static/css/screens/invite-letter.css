@@ -4,9 +4,7 @@
 
 .screen--invite-letter {
   position: relative;
-  background:
-    radial-gradient(120% 80% at 50% 110%, rgba(0,0,0,0.40) 0%, transparent 60%),
-    linear-gradient(180deg, #3B2A4F 0%, #2A1F3D 55%, #1B1429 100%);
+  background: var(--grad-envelope-dusk);
   color: #F2EFE7;
   overflow: hidden;
 }
@@ -29,22 +27,22 @@
 
 .envelope-blooms__bloom--top-left {
   left: -60px; top: -40px;
-  background: radial-gradient(circle, #E0808F 0%, transparent 60%);
+  background: var(--grad-bloom-rose);
 }
 .envelope-blooms__bloom--top-right {
   right: -80px; top: 40px;
-  background: radial-gradient(circle, #F4A582 0%, transparent 60%);
+  background: var(--grad-bloom-coral);
   width: 240px; height: 240px;
 }
 .envelope-blooms__bloom--mid-right {
   right: -120px; top: 38%;
-  background: radial-gradient(circle, #BE6E8A 0%, transparent 60%);
+  background: var(--grad-bloom-mauve);
   width: 280px; height: 280px;
   opacity: 0.45;
 }
 .envelope-blooms__bloom--bottom-left {
   left: -100px; bottom: -40px;
-  background: radial-gradient(circle, #D89B6F 0%, transparent 60%);
+  background: var(--grad-bloom-amber);
   width: 260px; height: 260px;
   opacity: 0.45;
 }
@@ -110,8 +108,7 @@
   border-radius: 50%;
   display: grid;
   place-items: center;
-  background:
-    radial-gradient(circle at 35% 30%, #A6261A 0%, #7B130C 70%, #5B0B07 100%);
+  background: var(--grad-wax-seal);
   box-shadow:
     inset 4px 4px 10px rgba(255, 220, 200, 0.18),
     inset -3px -3px 10px rgba(0, 0, 0, 0.55),

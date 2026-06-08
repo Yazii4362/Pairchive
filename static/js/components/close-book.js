@@ -1,56 +1,45 @@
 import { navigateTo } from '../app.js';
 
 /**
- * 06 · 책 덮기 — 깊은 잉크 톤, 한 권을 책장으로 보내는 마지막 의식
+ * 06 · 책 덮기 — 종이톤 배경, 가운데 네이비 책 한 권 + 하단 "· CLOSE ·"
+ * 시안 기반 미니멀 디자인.
  */
 export function renderCloseBook() {
   const section = document.createElement('section');
   section.className = 'screen screen--close-book';
-  section.dataset.scheme = 'dark';
+  section.dataset.scheme = 'light';
   section.innerHTML = /* html */ `
-    <header style="text-align:center; padding: 14px 28px 0;">
-      <p class="ed-eyebrow">Closing the Book</p>
-    </header>
-
-    <div class="cover-stage">
-      <article class="cover" aria-label="책 표지: Personal Curation, Film Archive, April 2025">
+    <div class="close-stage">
+      <article class="cover cover--close" aria-label="책 표지: Personal Curation, Film Archive, April 2025">
         <div class="cover__plate">
-          <p class="cover__meta-line">Film Archive</p>
           <div class="cover__plate-art" aria-hidden="true">
             <svg viewBox="0 0 80 110" xmlns="http://www.w3.org/2000/svg" fill="none">
-              <ellipse cx="40" cy="35" rx="14" ry="16" fill="rgba(237,230,214,0.18)"/>
-              <path d="M22 60 Q40 50 58 60 L60 92 Q40 100 20 92 Z" fill="rgba(237,230,214,0.18)"/>
-              <path d="M18 92 Q40 84 62 92 L64 110 L16 110 Z" fill="rgba(237,230,214,0.10)"/>
+              <defs>
+                <radialGradient id="close-figure-glow" cx="50%" cy="38%" r="55%">
+                  <stop offset="0%"  stop-color="rgba(237,230,214,0.40)"/>
+                  <stop offset="100%" stop-color="rgba(237,230,214,0)"/>
+                </radialGradient>
+              </defs>
+              <rect width="80" height="110" fill="url(#close-figure-glow)" opacity="0.55"/>
+              <ellipse cx="40" cy="28" rx="8" ry="10" fill="rgba(237,230,214,0.40)"/>
+              <path d="M28 42 Q22 56 27 72 L27 90 L53 90 L53 72 Q58 56 52 42 Q40 38 28 42 Z"
+                    fill="rgba(237,230,214,0.36)"/>
+              <ellipse cx="40" cy="74" rx="14" ry="6.5" fill="rgba(237,230,214,0.30)"/>
+              <path d="M26 64 Q40 56 54 64" stroke="rgba(237,230,214,0.42)" stroke-width="1.2" stroke-linecap="round"/>
+              <rect x="12" y="92" width="56" height="14" fill="rgba(237,230,214,0.12)"/>
             </svg>
           </div>
-          <p class="cover__meta-title">Personal<br/>Curation</p>
-          <p class="cover__meta-line" style="margin-top:6px;">April 2025 · 두비 · 야지</p>
+          <p class="cover__meta-line cover__meta-line--top">FILM&nbsp;ARCHIVE</p>
+          <p class="cover__meta-line cover__meta-line--bot">APRIL 2025</p>
         </div>
       </article>
-    </div>
 
-    <section style="padding: 0 28px;">
-      <p class="ed-caption close-caption">
-        이번 책에는 12개의 페이지,<br/>3개의 와우 모먼트가 끼워졌어요.
-      </p>
-
-      <article class="close-final">
-        <p class="ed-section-label" style="color: rgba(242,239,231,0.5);">우리 둘이 남긴 마지막 한 줄</p>
-        <p class="close-final__line">
-          “행렬은 결국 공간을 비트는 이야기.<br/>다음 책은 색에 대해 다뤄볼까?”
-        </p>
-        <p class="close-final__sig">야지 · 2025.04.30</p>
-      </article>
-    </section>
-
-    <footer class="ed-footer">
-      <button class="ed-btn ed-btn--block" type="button" style="background:#F2EFE7; color: var(--navy-ink);" data-go="wow-moment">
-        CLOSE — 책 덮기
+      <button type="button" class="close-trigger" data-go="wow-moment" aria-label="이번 책을 책장으로 보내기">
+        <span class="close-trigger__dot">·</span>
+        <span class="close-trigger__label">CLOSE</span>
+        <span class="close-trigger__dot">·</span>
       </button>
-      <p class="ed-caption" style="color: rgba(242,239,231,0.45); font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase;">
-        눌러서 책장으로 보내기
-      </p>
-    </footer>
+    </div>
   `;
 
   section.querySelectorAll('[data-go]').forEach((el) =>

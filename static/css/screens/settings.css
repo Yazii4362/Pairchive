@@ -27,7 +27,7 @@
   width: 56px;
   height: 56px;
   border-radius: 14px;
-  background: linear-gradient(135deg, #FFC1EA, #FF6EB4);
+  background: var(--grad-avatar-blossom);
   color: #fff;
   font-family: var(--font-serif);
   font-size: 22px;

@@ -1,13 +1,108 @@
 /* ====================================================================
-   13 · 1인 모드 빈 서재 — 페어 모드보다 살짝 더 차분한 톤
+   SOLO EMPTY · 1인 모드 — 페어보다 차분한 톤, 가운데 빈 책 outline
    ==================================================================== */
 
+.screen.shelf-light.solo-mode-modifier,
 .screen--solo-empty {
-  background: var(--solo-paper);
-  --paper:      var(--solo-paper);
+  background: var(--grad-paper-soft);
+  color: var(--ink);
+  --paper:      #ECE7DC;
   --paper-soft: #F2EDDF;
 }
 
+.shelf-dashboard {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 20px 22px 28px;
+  gap: 22px;
+}
+
+.shelf-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 14px;
+}
+
+.room-title-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.room-title-wrap h2 {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 400;
+  font-size: 24px;
+  letter-spacing: 0.01em;
+  color: var(--ink);
+  margin: 0;
+}
+
+.room-title-wrap p {
+  font-size: 12px;
+  color: var(--ink-mute);
+  margin: 0;
+  letter-spacing: -0.005em;
+}
+
+.btn-pill-connect {
+  flex-shrink: 0;
+  min-height: 36px;
+  padding: 8px 14px;
+  border-radius: 999px;
+  background: var(--grad-green-cta);
+  color: #F2EFE7;
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  border: 0;
+  cursor: pointer;
+  box-shadow: 0 6px 14px rgba(42, 74, 53, 0.22);
+  transition: filter var(--dur-base) var(--ease-standard);
+}
+.btn-pill-connect:hover { filter: brightness(1.08); }
+
+/* ── 가운데 영역 ─────────────────────────────────────────────────── */
+.solo-empty-center {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 22px;
+  text-align: center;
+  color: var(--ink-soft);
+}
+
+.empty-book-outline-graphic {
+  width: 88px;
+  height: 124px;
+  border: 1.5px dashed rgba(27, 22, 18, 0.32);
+  border-radius: 3px 8px 8px 3px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.18) 0%, rgba(255, 255, 255, 0) 60%);
+  position: relative;
+}
+.empty-book-outline-graphic::before {
+  content: '';
+  position: absolute;
+  left: 6px;
+  top: 0; bottom: 0;
+  width: 1px;
+  background: rgba(27, 22, 18, 0.20);
+}
+
+.solo-empty-center p {
+  font-size: 14px;
+  line-height: 1.55;
+  color: var(--ink-soft);
+  margin: 0;
+}
+
+/* ── 기존 내가 만든 .screen--solo-empty 변형 (empty-shelf 스타일) ── */
 .screen--solo-empty .shelf-new-book--solo {
   background: linear-gradient(180deg, #E2DCC9 0%, #C9C2AC 100%);
   border-color: rgba(27, 22, 18, 0.16);

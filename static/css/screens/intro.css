@@ -1,0 +1,252 @@
+/* ====================================================================
+   INTRO · 스플래시 — THE PERSONAL CURATION + 큰 책장
+   ==================================================================== */
+
+.screen--intro {
+  background: var(--grad-paper-day);
+  color: var(--ink);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ── 헤드라인 영역 ──────────────────────────────────────────────── */
+.intro-stage {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  padding: 56px 28px 0;
+}
+
+.intro-head {
+  text-align: center;
+}
+
+.intro-title {
+  font-family: var(--font-serif);
+  font-weight: 500;
+  font-size: clamp(36px, 11vw, 46px);
+  line-height: 1.04;
+  letter-spacing: var(--track-cinzel);
+  color: var(--ink);
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.intro-title__line2 {
+  /* 시안: 두 번째 줄도 같은 톤(이태릭 없음) */
+  font-weight: 500;
+  letter-spacing: var(--track-cinzel);
+}
+
+/* ====================================================================
+   책장 — 큰 가죽 책들 + 가운데 메인 책 표지
+   책장 자체가 button (탭하면 다음 단계)
+   ==================================================================== */
+.bookshelf-stage {
+  margin-top: auto;
+  padding: 12px 8px 28px;
+  position: relative;
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  width: 100%;
+}
+
+.bookshelf-line {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 0;
+  position: relative;
+  filter: drop-shadow(0 18px 30px rgba(20, 16, 12, 0.18));
+}
+
+/* 책장 바닥 — 그라디언트 그림자 */
+.bookshelf-floor {
+  height: 14px;
+  margin: 0 6%;
+  background: var(--grad-shelf-floor);
+  filter: blur(1px);
+}
+.bookshelf-floor::after {
+  content: '';
+  display: block;
+  height: 1.5px;
+  background: var(--paper-shadow);
+  margin-top: 2px;
+  opacity: 0.55;
+}
+
+/* ── 책 스파인 — global의 --grad-leather-spine 시스템 사용 ────────── */
+.book-spine {
+  flex: 0 0 auto;
+  width: var(--book-width, 18px);
+  height: var(--book-height, 160px);
+  position: relative;
+  border-radius: 1px 3px 0 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform-origin: bottom center;
+  transition: transform 320ms var(--ease-emphasized);
+  background: var(--grad-leather-spine);
+  box-shadow:
+    inset -2px 0 4px rgba(0, 0, 0, 0.25),
+    inset 2px 0 0 rgba(255, 255, 255, 0.06),
+    0 1px 0 rgba(0, 0, 0, 0.18);
+}
+.book-spine + .book-spine { margin-left: 1px; }
+.bookshelf-stage:hover .book-cover-main { transform: perspective(900px) rotateY(-3deg) translateY(-3px); }
+
+/* 책별 가죽 색상 — --spine 변수만 주입 */
+.book-spine.book-pink         { --spine: #E48BAE; }     /* in Paris */
+.book-spine.book-light-pink   { --spine: #F4C7D0; }     /* Acne Studios */
+.book-spine.book-paper        { --spine: #F0E8D4; }     /* Vincent Van Dieren */
+.book-spine.book-dark-brown   { --spine: #2D2218; }     /* Damiani & Lock */
+.book-spine.book-tan          { --spine: #D9C9A8; }     /* Jeannouy */
+.book-spine.book-monocle      { --spine: #B22B26; }     /* The Monocle Guide */
+.book-spine.book-graphite     { --spine: #3B3934; }     /* Interior Design Handbook */
+.book-spine.book-yellow       { --spine: #E5C77A; }     /* David Hockney */
+.book-spine.book-brown        { --spine: #4D3722; }     /* Current */
+.book-spine.book-coral-soft   { --spine: #D87559; }     /* 작은 두 번째 책 */
+
+/* 페이퍼/흰 톤 — 음영을 더 약하게 */
+.book-spine.book-white,
+.book-spine.book-paper {
+  box-shadow:
+    inset -2px 0 4px rgba(0, 0, 0, 0.10),
+    inset 2px 0 0 rgba(0, 0, 0, 0.04),
+    0 1px 0 rgba(0, 0, 0, 0.10);
+}
+.book-spine.book-white {
+  --spine: #F4EFE4;
+}
+
+/* "S,M,L,XL" 두꺼운 흰 책 — 가로 식자 */
+.book-spine.book-smlxl {
+  align-items: flex-end;
+  padding-bottom: 14px;
+}
+
+/* ── 스파인 텍스트 ─────────────────────────────────────────────── */
+.spine-text {
+  display: inline-block;
+  font-family: var(--font-serif);
+  font-size: 9px;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.86);
+  padding: 12px 0;
+  max-height: 86%;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.spine-text.vertical    { writing-mode: vertical-rl; transform: rotate(180deg); }
+.spine-text.horizontal  { writing-mode: horizontal-tb; padding: 0; font-size: 11px; }
+.spine-text.small       { font-size: 7.5px; letter-spacing: 0.22em; }
+.spine-text.italic      {
+  font-style: italic;
+  text-transform: none;
+  letter-spacing: 0.02em;
+  font-size: 11px;
+  font-weight: 500;
+}
+.spine-text.bold        { font-weight: 700; }
+.spine-text.dark-text   { color: rgba(27, 22, 18, 0.78); }
+
+.book-spine.book-white .spine-text,
+.book-spine.book-paper .spine-text,
+.book-spine.book-tan .spine-text,
+.book-spine.book-light-pink .spine-text,
+.book-spine.book-yellow .spine-text {
+  color: rgba(27, 22, 18, 0.78);
+}
+
+/* ====================================================================
+   메인 책 표지 — 누드 조각상 사진(SVG) + "PERSONAL CURATION"
+   ==================================================================== */
+.book-cover-main {
+  flex: 0 0 auto;
+  width: var(--book-width, 112px);
+  height: var(--book-height, 208px);
+  position: relative;
+  margin: 0 4px;
+  border-radius: 3px 8px 8px 3px;
+  background: var(--grad-cover-navy);
+  box-shadow:
+    inset -3px 0 8px rgba(0, 0, 0, 0.32),
+    inset 3px 0 0 rgba(255, 255, 255, 0.06),
+    0 22px 44px rgba(20, 16, 12, 0.36),
+    0 6px 14px rgba(20, 16, 12, 0.22);
+  padding: 12px 10px 12px 14px;
+  transform: perspective(900px) rotateY(-3deg);
+  transition: transform 360ms var(--ease-emphasized);
+}
+
+.book-cover-main::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 0; bottom: 0;
+  width: 8px;
+  background: linear-gradient(90deg, rgba(0,0,0,0.45) 0%, rgba(0,0,0,0.05) 100%);
+  border-radius: 3px 0 0 3px;
+}
+
+.cover-inner {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 8px;
+  position: relative;
+  z-index: 1;
+}
+
+/* 사진 영역 — 흰 베젤(밝은 테두리) 안에 사진 */
+.cover-photo {
+  position: relative;
+  flex: 1;
+  border-radius: 1.5px;
+  overflow: hidden;
+  background: var(--grad-cover-plate-navy);
+  border: 1px solid rgba(245, 235, 215, 0.18);
+  display: grid;
+  place-items: center;
+}
+.cover-photo__svg {
+  width: 88%;
+  height: 92%;
+  opacity: 0.92;
+}
+.cover-photo__veil {
+  position: absolute;
+  inset: 0;
+  background: var(--grad-photo-veil);
+  pointer-events: none;
+}
+
+/* 책 표지 라벨: "PERSONAL CURATION" */
+.cover-mini-text {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  font-family: var(--font-serif);
+  font-size: 8px;
+  font-weight: 500;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: rgba(245, 235, 215, 0.92);
+  line-height: 1.35;
+  padding: 2px 0;
+}
+.cover-mini-text__top,
+.cover-mini-text__bot { display: block; }

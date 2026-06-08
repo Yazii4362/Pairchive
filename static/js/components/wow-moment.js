@@ -1,50 +1,45 @@
+import { navigateTo } from '../app.js';
+
 /**
- * 07 · 와우 모먼트 — 한 권의 책이 책장에 꽂히는 순간
+ * 07 · 와우 모먼트 — 한 권의 책이 책장에 꽂힌 순간
+ * 시안: "THE PERSONAL CURATION" 헤드라인 + March·APRIL(네이비)·May 책장.
  */
-export default {
-  id: 'wow-moment',
-  label: '와우 모먼트',
-  group: 'cycle',
-  scheme: 'light',
+export function renderWowMoment() {
+  const section = document.createElement('section');
+  section.className = 'screen screen--wow-moment';
+  section.dataset.scheme = 'light';
+  section.innerHTML = /* html */ `
+    <header class="wow-head">
+      <h1 class="wow-title">
+        <span>THE</span>
+        <span>PERSONAL</span>
+        <span>CURATION</span>
+      </h1>
+    </header>
 
-  render() {
-    return /* html */ `
-      <section class="screen screen--wow-moment">
-        <header style="text-align:center; padding: 18px 28px 0;">
-          <p class="ed-eyebrow">A New Volume</p>
-          <h1 class="ed-title" style="margin-top: 14px;">
-            THE<br/>PERSONAL<br/>CURATION
-          </h1>
-          <p class="ed-caption" style="margin-top: 14px;">
-            4월의 책이 책장에 꽂혔어요.<br/>
-            가장 두꺼운 한 권으로요.
-          </p>
-        </header>
+    <div class="wow-shelf-stage" aria-hidden="true">
+      <div class="wow-shelf">
+        <span class="wow-spine wow-spine--paper">
+          <span class="wow-spine__label">MARCH</span>
+        </span>
+        <span class="wow-spine wow-spine--feature">
+          <span class="wow-spine__label">APRIL</span>
+        </span>
+        <span class="wow-spine wow-spine--paper">
+          <span class="wow-spine__label">MAY</span>
+        </span>
+      </div>
+      <div class="wow-shelf-floor"></div>
+    </div>
 
-        <div class="shelf-stage" aria-hidden="true" style="margin-top: 32px; padding-bottom: 22px;">
-          <div class="shelf shelf--wow">
-            <span class="spine spine--tall spine--xwide" style="--spine:#E2DCC5;">
-              <span class="spine__label" style="color:rgba(27,22,18,0.55);">March</span>
-            </span>
-            <span class="spine spine--feature" style="--spine:#15203F;">
-              <span class="spine__label">April</span>
-            </span>
-            <span class="spine spine--tall spine--xwide" style="--spine:#E2DCC5;">
-              <span class="spine__label" style="color:rgba(27,22,18,0.55);">May</span>
-            </span>
-          </div>
-          <div class="shelf-floor" style="margin-top: 4px;"></div>
-        </div>
+    <footer class="wow-foot">
+      <button class="ed-btn ed-btn--block" type="button" data-go="report">리포트 카드로</button>
+      <button class="ed-btn ed-btn--ghost ed-btn--block" type="button" data-go="shelf">서재로 돌아가기</button>
+    </footer>
+  `;
 
-        <footer class="ed-footer" style="padding-top: 8px;">
-          <div style="display:flex; gap: 8px; align-items:center; justify-content:center; flex-wrap:wrap;">
-            <span class="ed-badge">NEW</span>
-            <span class="ed-section-label">12 pages · 3 wow · 2 readers</span>
-          </div>
-          <button class="ed-btn ed-btn--block" type="button">책 표지 확인하기</button>
-          <button class="ed-btn ed-btn--ghost ed-btn--block" type="button">서재로 돌아가기</button>
-        </footer>
-      </section>
-    `;
-  },
-};
+  section.querySelectorAll('[data-go]').forEach((el) =>
+    el.addEventListener('click', () => navigateTo(el.dataset.go))
+  );
+  return section;
+}

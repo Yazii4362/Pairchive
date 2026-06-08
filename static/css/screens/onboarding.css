@@ -1,0 +1,129 @@
+/* ====================================================================
+   ONBOARDING · tastify 스타일 다크 스플래시 — 서재 이름 입력
+   ==================================================================== */
+
+.screen.onboarding-dark,
+.screen--onboarding {
+  background: var(--grad-onboarding-dark);
+  color: #F2EFE7;
+  --color-fg: #F2EFE7;
+}
+
+.onboarding-wrap {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 28px 28px 32px;
+  gap: 28px;
+}
+
+/* ── 헤더 로고: tastify 그림자 폰트 ───────────────────────────────── */
+.header-logo {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 600;
+  font-size: 30px;
+  letter-spacing: 0.02em;
+  background: var(--grad-headline-paper);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  text-shadow: 0 2px 12px rgba(242, 239, 231, 0.18);
+  margin: 0;
+}
+
+/* ── 타이포 블록 ─────────────────────────────────────────────────── */
+.typography-block {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-top: auto;
+}
+
+.typography-block h2 {
+  font-family: var(--font-serif), 'Iowan Old Style', Georgia, serif;
+  font-style: italic;
+  font-weight: 400;
+  font-size: clamp(26px, 7.5vw, 30px);
+  line-height: 1.32;
+  letter-spacing: -0.005em;
+  color: #F2EFE7;
+  margin: 0;
+}
+
+.highlight {
+  background: var(--grad-highlight-blush);
+  padding: 0 4px;
+  border-radius: 3px;
+}
+
+.typography-block p {
+  font-size: 14px;
+  line-height: 1.55;
+  color: rgba(242, 239, 231, 0.72);
+  margin: 0;
+}
+
+/* ── 입력 + CTA ──────────────────────────────────────────────────── */
+.form-container {
+  margin-top: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.input-minimal {
+  width: 100%;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 14px;
+  padding: 14px 16px;
+  font-size: 15px;
+  color: #F2EFE7;
+  letter-spacing: -0.01em;
+  transition: border-color var(--dur-base) var(--ease-standard);
+}
+.input-minimal::placeholder { color: rgba(242, 239, 231, 0.42); font-style: italic; }
+.input-minimal:focus-visible {
+  border-color: rgba(232, 183, 168, 0.7);
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.btn-primary-rect {
+  width: 100%;
+  min-height: 52px;
+  padding: 14px 20px;
+  border-radius: 14px;
+  background: var(--grad-paper-cta);
+  color: #1B1612;
+  font-family: inherit;
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  cursor: pointer;
+  box-shadow: 0 10px 26px rgba(0, 0, 0, 0.32);
+  transition:
+    transform var(--dur-fast) var(--ease-standard),
+    filter var(--dur-base) var(--ease-standard);
+}
+.btn-primary-rect:hover  { filter: brightness(1.05); }
+.btn-primary-rect:active { transform: scale(0.98); }
+
+.dev-bypass {
+  display: flex;
+  justify-content: center;
+}
+
+.btn-text-link {
+  background: none;
+  border: 0;
+  color: rgba(242, 239, 231, 0.6);
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  cursor: pointer;
+  padding: 8px 12px;
+  transition: color var(--dur-base) var(--ease-standard);
+}
+.btn-text-link:hover { color: #F2EFE7; }

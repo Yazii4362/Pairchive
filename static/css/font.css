@@ -33,16 +33,13 @@
     Consolas,
     monospace;
 
-  /* ── editorial 타이포 스케일 ─────────────────────────────────────── */
-  --type-hero:        clamp(36px, 11vw, 48px);
-  --type-display:     clamp(28px, 8vw, 34px);
-  --type-title:       22px;
-  --type-headline:    17px;
-  --type-body:        15px;
-  --type-caption:     13px;
-  --type-foot:        11px;
+  /* ── editorial 타이포 스케일 (실제로 화면이 참조하는 것만 유지) ─── */
+  --type-hero:        clamp(36px, 11vw, 48px);   /* THE PERSONAL CURATION 헤드라인 */
+  --type-display:     clamp(28px, 8vw, 34px);    /* 화면 sm-title */
+  --type-caption:     13px;                       /* 캡션 / 부연 */
+  --type-foot:        11px;                       /* eyebrow / footer 메타 */
 
-  /* Cinzel ALL CAPS uses heavy letter-spacing for monumental feel */
+  /* Cinzel ALL CAPS — 기념비적 자간 */
   --track-cinzel:     0.04em;
   --track-eyebrow:    0.32em;
   --track-tracked:    0.28em;

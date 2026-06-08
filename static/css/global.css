@@ -5,34 +5,46 @@
    ==================================================================== */
 
 :root {
-  /* ── 종이 톤 (Personal Curation) ─────────────────────────────────── */
-  --paper:           #EEEAE0;
-  --paper-soft:      #F5F1E6;
-  --paper-deep:      #E1DCCE;
-  --paper-edge:      #C9C2B0;
-  --paper-shadow:    #B5AC95;
+  /* ══════════════════════════════════════════════════════════════════
+     COLOR SYSTEM — Editorial · Black & White + Google Blue accent
+     ─ 누리끼리한 페이퍼/베이지 톤 일체 제거
+     ─ Apple-quality 흑백 본문 + 단 하나의 컬러(Google Blue)
+     ══════════════════════════════════════════════════════════════════ */
 
-  /* ── 잉크 (텍스트/CTA) ──────────────────────────────────────────── */
-  --ink:             #1B1612;
-  --ink-soft:        #4A413A;
-  --ink-mute:        #8B7F70;
-  --ink-line:        rgba(27, 22, 18, 0.12);
+  /* ── Surface (구 "페이퍼" 이름 호환 유지) ─────────────────────── */
+  --paper:           #FFFFFF;
+  --paper-soft:      #F8F8F8;
+  --paper-deep:      #ECECEC;
+  --paper-shadow:    rgba(0, 0, 0, 0.10);
 
-  --ink-green:       #2A4A35;       /* 브랜드 딥 그린 */
-  --ink-green-soft:  #6A8770;
-  --ink-green-line:  rgba(42, 74, 53, 0.22);
+  /* ── 잉크 (텍스트/CTA) — 순흑백 ────────────────────────────────── */
+  --ink:             #0F0F0F;
+  --ink-soft:        #3A3A3A;
+  --ink-mute:        #7A7A7A;
+  --ink-line:        rgba(0, 0, 0, 0.08);
 
-  --navy-ink:        #15203F;       /* "와우" 강조 책 색 / 책 덮기 톤 */
-  --rose-ink:        #B0394A;       /* 파괴적 액션 / 액센트 */
-  --rose-cover:      #A6402B;       /* "서로의 세계" 같은 표지 */
-  --solo-paper:      #ECE7DC;       /* 1인 모드 살짝 다른 톤 */
+  /* ── 책 색 — 강조 책은 잉크 블랙 ─────────────────────────────── */
+  --ink-green:       #0F0F0F;       /* (구) 브랜드 그린 → 흑 통일 */
+  --navy-ink:        #0F0F0F;       /* (구) navy 강조 책 → 흑 통일 */
+  --rose-ink:        #B0394A;       /* destructive(파괴적 액션)만 유지 */
+
+  /* ── Google Blue accent — 시그니처 컬러 액센트 ────────────────── */
+  --blue-accent:       #1A73E8;
+  --blue-accent-soft:  #4285F4;
+  --blue-accent-mute:  rgba(26, 115, 232, 0.12);
+
+  /* ── 반응형 브레이크포인트 (참조용) ───────────────────────────── */
+  --bp-tablet:   768px;
+  --bp-desktop:  1280px;
+
+  /* ── 화면 컨테이너 최대폭 (각 screen이 참고) ─────────────────── */
+  --container-narrow:  720px;
+  --container-base:    1024px;
+  --container-wide:    1280px;
 
   /* ── 형상 / 곡률 ────────────────────────────────────────────────── */
-  --r-sm:    8px;
   --r-md:    12px;
   --r-lg:    16px;
-  --r-xl:    24px;
-  --r-pill:  9999px;
 
   /* ── 모션 ───────────────────────────────────────────────────────── */
   --ease-standard:   cubic-bezier(0.4, 0, 0.2, 1);
@@ -42,25 +54,128 @@
   --dur-slow:        360ms;
 
   /* ── 그림자 ─────────────────────────────────────────────────────── */
-  --shadow-card:     0 12px 28px rgba(15, 23, 42, 0.06);
-  --shadow-deep:     0 28px 80px rgba(15, 23, 42, 0.12);
   --shadow-modal:    0 -16px 40px rgba(0, 0, 0, 0.16);
 
-  /* ── 타이포 색 (light) ──────────────────────────────────────────── */
+  /* ── 타이포 색 (light scheme 기본) ──────────────────────────────── */
   --color-fg:        var(--ink);
   --color-fg-soft:   var(--ink-soft);
   --color-fg-mute:   var(--ink-mute);
   --color-line:      var(--ink-line);
-  --color-bg:        var(--paper);
+
+  /* ══════════════════════════════════════════════════════════════════
+     GRADIENT SYSTEM
+     ─ 화면별 그라디언트를 토큰으로 추출. 컴포넌트는 var(--grad-*)만 참조.
+     ══════════════════════════════════════════════════════════════════ */
+
+  /* ── 페이지 배경 ─────────────────────────────────────────────────── */
+  /* intro / wow / close: 깨끗한 라이트 그라디언트 */
+  --grad-paper-day:
+    linear-gradient(180deg, #FFFFFF 0%, #F8F8F8 100%);
+
+  /* solo-empty: 차분한 라이트 */
+  --grad-paper-soft:
+    linear-gradient(180deg, #FFFFFF 0%, #F2F2F2 100%);
+
+  /* onboarding: 깊은 다크(베이지 highlight 제거) */
+  --grad-onboarding-dark:
+    radial-gradient(120% 70% at 50% 0%, rgba(255, 255, 255, 0.04) 0%, transparent 60%),
+    linear-gradient(180deg, #1A1A1A 0%, #0F0F0F 100%);
+
+  /* lock-noti: 한밤 — 차가운 잉크 블랙 */
+  --grad-ink-night:
+    radial-gradient(80% 60% at 50% 15%, rgba(255, 255, 255, 0.05) 0%, transparent 60%),
+    linear-gradient(180deg, #0A0A0A 0%, #1A1A1A 100%);
+
+  /* close-book(다크 변형이 필요할 때): 잉크 블랙 */
+  --grad-close-ink:
+    radial-gradient(120% 60% at 50% 0%, rgba(255, 255, 255, 0.04) 0%, transparent 60%),
+    linear-gradient(180deg, #1A1A1A 0%, #0A0A0A 100%);
+
+  /* invite-letter: 다크 무드 (자주 톤 제거, 잉크 톤으로) */
+  --grad-envelope-dusk:
+    radial-gradient(120% 80% at 50% 110%, rgba(0, 0, 0, 0.40) 0%, transparent 60%),
+    linear-gradient(180deg, #1F1F1F 0%, #141414 55%, #0A0A0A 100%);
+
+  /* share-sheet: 그린 호스트 → 잉크 블랙 호스트 */
+  --grad-share-host:
+    radial-gradient(120% 70% at 50% 12%, rgba(0, 0, 0, 0.32) 0%, transparent 60%),
+    linear-gradient(180deg, #1A1A1A 0%, #0F0F0F 100%);
+
+  /* capture: Safari 다크 호스트 */
+  --grad-capture-host:
+    radial-gradient(120% 70% at 50% 20%, rgba(255, 255, 255, 0.06) 0%, transparent 70%),
+    linear-gradient(180deg, #2A2A2A 0%, #1B1B1B 100%);
+
+  /* reaction: 어두운 vignette 시트 오버레이 */
+  --grad-reaction-veil:
+    radial-gradient(80% 60% at 50% 20%, rgba(255, 255, 255, 0.05) 0%, transparent 70%),
+    linear-gradient(180deg, rgba(0, 0, 0, 0.55) 0%, rgba(0, 0, 0, 0.85) 100%);
+
+  /* ── 책 표지 (cover, cover--rose, cover plate art) ───────────────── */
+  /* navy 책 → 잉크 블랙(약간의 푸른기 제거) */
+  --grad-cover-navy:
+    radial-gradient(80% 60% at 50% 0%, rgba(255, 255, 255, 0.04) 0%, transparent 70%),
+    linear-gradient(135deg, #1F1F1F 0%, #141414 40%, #0A0A0A 100%);
+
+  --grad-cover-rose:
+    radial-gradient(80% 60% at 50% 0%, rgba(255, 255, 255, 0.06) 0%, transparent 70%),
+    linear-gradient(135deg, #2A2A2A 0%, #1A1A1A 45%, #0F0F0F 100%);
+
+  --grad-cover-plate-navy:
+    radial-gradient(60% 60% at 50% 50%, rgba(255, 255, 255, 0.06) 0%, rgba(255, 255, 255, 0) 70%),
+    linear-gradient(180deg, #161616 0%, #060606 100%);
+
+  --grad-cover-plate-rose:
+    radial-gradient(60% 60% at 50% 50%, rgba(255, 255, 255, 0.06) 0%, rgba(255, 255, 255, 0) 70%),
+    linear-gradient(180deg, #1F1F1F 0%, #0F0F0F 100%);
+
+  /* intro 메인 책 표지 (사진 책) — 화이트 톤 */
+  --grad-paper-volume:    linear-gradient(180deg, #FFFFFF 0%, #F0F0F0 100%);
+  --grad-photo-fallback:  linear-gradient(135deg, #DEDEDE 0%, #707070 100%);
+  --grad-photo-veil:
+    linear-gradient(180deg, rgba(0, 0, 0, 0.05) 0%, rgba(0, 0, 0, 0.25) 100%),
+    radial-gradient(60% 60% at 50% 50%, rgba(255, 255, 255, 0.18) 0%, transparent 70%);
+
+  /* ── 책 spine 가죽 음영 (var(--spine) 기반 자동 그라디언트) ──────── */
+  --grad-leather-spine:
+    linear-gradient(90deg,
+      color-mix(in srgb, var(--spine, #B0394A) 78%, #000 22%) 0%,
+      var(--spine, #B0394A)                                    50%,
+      color-mix(in srgb, var(--spine, #B0394A) 78%, #000 22%) 100%);
+
+  /* ── 봉투 부속물 ─────────────────────────────────────────────────── */
+  --grad-wax-seal:
+    radial-gradient(circle at 35% 30%, #A6261A 0%, #7B130C 70%, #5B0B07 100%);
+  --grad-bloom-rose:   radial-gradient(circle, #E0808F 0%, transparent 60%);
+  --grad-bloom-coral:  radial-gradient(circle, #F4A582 0%, transparent 60%);
+  --grad-bloom-mauve:  radial-gradient(circle, #BE6E8A 0%, transparent 60%);
+  --grad-bloom-amber:  radial-gradient(circle, #D89B6F 0%, transparent 60%);
+
+  /* ── CTA & 액센트 ────────────────────────────────────────────────── */
+  /* 구 그린 CTA → Google Blue CTA (라이트 화면에서만 사용) */
+  --grad-green-cta:       linear-gradient(180deg, #1A73E8 0%, #1862C6 100%);
+  --grad-blue-cta:        linear-gradient(180deg, #1A73E8 0%, #1862C6 100%);
+  --grad-paper-cta:       linear-gradient(180deg, #F8F8F8 0%, #E5E5E5 100%);
+  --grad-headline-paper:  linear-gradient(180deg, #F8F8F8 0%, #C7C7C7 100%);
+  --grad-highlight-blush: linear-gradient(180deg, transparent 60%, rgba(26, 115, 232, 0.18) 60%);
+
+  /* ── 아바타 (페어 두 명) — 흑백으로 통일 ─────────────────────────── */
+  --grad-avatar-blossom: linear-gradient(135deg, #7A7A7A 0%, #3A3A3A 100%);
+  --grad-avatar-rose:    linear-gradient(135deg, #DEDEDE 0%, #7A7A7A 100%);
+  --grad-avatar-ink:     linear-gradient(135deg, #2A2A2A 0%, #0F0F0F 100%);
+
+  /* ── 책장 바닥 그림자 ─────────────────────────────────────────────── */
+  --grad-shelf-floor:
+    radial-gradient(60% 100% at 50% 0%, rgba(0, 0, 0, 0.18) 0%, transparent 70%);
 
   color-scheme: light dark;
 }
 
-/* dark mode (잠금 화면·책 덮기·봉투 등 다크 화면에 적용) */
+/* dark mode (잠금 화면·봉투 등 다크 화면에 적용) — 누리끼리 톤 제거 */
 body[data-scheme="dark"] {
-  --color-fg:        #F2EFE7;
-  --color-fg-soft:   rgba(242, 239, 231, 0.78);
-  --color-fg-mute:   rgba(242, 239, 231, 0.55);
+  --color-fg:        #F4F4F4;
+  --color-fg-soft:   rgba(244, 244, 244, 0.78);
+  --color-fg-mute:   rgba(244, 244, 244, 0.55);
   --color-line:      rgba(255, 255, 255, 0.14);
 }
 
@@ -208,7 +323,8 @@ body {
 }
 
 /* ── 스크린 호스트 (실제 화면 렌더 영역) ──────────────────────────── */
-.screen-host {
+.screen-host,
+#app.screen-host {
   flex: 1;
   display: flex;
   flex-direction: column;
@@ -216,21 +332,19 @@ body {
   position: relative;
 }
 
-.screen-host > .screen {
+.screen-host > .screen,
+#app > .screen {
   flex: 1;
   min-height: 0;
   display: flex;
   flex-direction: column;
   background: var(--paper);
   color: var(--color-fg);
-}
-
-/* 화면 전환 트랜지션 ────────────────────────────────────────────── */
-.screen-host > .screen {
+  position: relative;
   animation: screen-in var(--dur-slow) var(--ease-emphasized);
 }
 
-.screen-host[data-leaving='true'] > .screen {
+#app[data-state='leaving'] > .screen {
   animation: screen-out var(--dur-fast) var(--ease-standard) forwards;
 }
 
@@ -242,6 +356,30 @@ body {
   from { opacity: 1; transform: translateY(0); }
   to   { opacity: 0; transform: translateY(-6px); }
 }
+
+/* ── 상태바 / 홈 인디케이터 가시성 ────────────────────────────────── */
+.status-bar[data-hidden='true'],
+.home-indicator[data-hidden='true'] {
+  display: none;
+}
+
+/* iOS 시뮬 chrome은 모바일/태블릿까지만. 데스크탑부터는 자동 숨김 */
+@media (min-width: 1024px) {
+  .status-bar,
+  .home-indicator {
+    display: none;
+  }
+}
+
+/* dark scheme에서 상태바 색이 자동으로 paper 톤이 되도록 */
+body[data-scheme='dark'] .status-bar { color: var(--color-fg); }
+body[data-scheme='dark'] .home-indicator__bar { background: var(--color-fg); opacity: 0.55; }
+
+/* 각 screen이 자기 배경을 가질 수 있도록 body는 화면 색 따라가지 않음
+   (배경 sliver/seam 방지) */
+body { background: #0F0F0F; }
+body[data-scheme='light'] { background: #FFFFFF; }
+body[data-scheme='dark']  { background: #0F0F0F; }
 
 /* ── 홈 인디케이터 (iOS) ──────────────────────────────────────────── */
 .home-indicator {
@@ -260,163 +398,54 @@ body {
   opacity: 0.45;
 }
 
-/* ── 스크린 스위처 (프로토타입 전용 UI) ───────────────────────────── */
-.switcher-toggle {
+/* ── 미니 페이저 (우하단 prev / next, 모든 화면 위에 고정) ────────── */
+.pager {
   position: fixed;
-  right: 16px;
-  bottom: 16px;
+  right: 20px;
+  bottom: 20px;
   z-index: 100;
-  width: 48px;
-  height: 48px;
-  border-radius: 50%;
-  background: var(--ink);
-  color: var(--paper);
-  display: grid;
-  place-items: center;
-  box-shadow: 0 12px 28px rgba(0,0,0,0.24);
-  border: 1px solid rgba(255,255,255,0.08);
-  transition: transform var(--dur-base) var(--ease-emphasized);
-}
-.switcher-toggle:hover { transform: scale(1.05); }
-.switcher-toggle:active { transform: scale(0.95); }
-
-.switcher-toggle__icon {
-  display: inline-block;
-  width: 16px;
-  height: 2px;
-  background: currentColor;
-  position: relative;
-  border-radius: 2px;
-}
-.switcher-toggle__icon::before,
-.switcher-toggle__icon::after {
-  content: '';
-  position: absolute;
-  left: 0;
-  width: 16px;
-  height: 2px;
-  background: currentColor;
-  border-radius: 2px;
-}
-.switcher-toggle__icon::before { top: -6px; }
-.switcher-toggle__icon::after  { top:  6px; }
-
-.switcher {
-  position: fixed;
-  inset: 0;
-  z-index: 90;
-  background: rgba(20, 16, 12, 0.55);
+  display: inline-flex;
+  gap: 6px;
+  padding: 4px;
+  border-radius: 999px;
+  background: rgba(0, 0, 0, 0.04);
+  border: 1px solid rgba(0, 0, 0, 0.06);
   -webkit-backdrop-filter: blur(8px);
   backdrop-filter: blur(8px);
-  display: flex;
-  align-items: flex-end;
-  justify-content: stretch;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity var(--dur-base) var(--ease-standard);
-}
-.switcher[data-open='true'] {
-  opacity: 1;
-  pointer-events: auto;
 }
 
-.switcher__sheet {
-  width: 100%;
-  max-height: 76vh;
-  background: var(--paper);
-  border-radius: 20px 20px 0 0;
-  padding: 14px 22px max(28px, env(safe-area-inset-bottom));
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
-  transform: translateY(100%);
-  transition: transform var(--dur-slow) var(--ease-emphasized);
-  overflow-y: auto;
-}
-.switcher[data-open='true'] .switcher__sheet { transform: translateY(0); }
-
-.switcher__handle {
-  align-self: center;
-  width: 38px; height: 5px;
-  border-radius: 99px;
-  background: rgba(27,22,18,0.18);
-}
-
-.switcher__title {
-  font-family: var(--font-serif);
-  font-size: 20px;
-  letter-spacing: var(--track-cinzel);
-  text-transform: uppercase;
+.pager__btn {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: transparent;
   color: var(--ink);
-  text-align: center;
-  margin: 0;
-}
-
-.switcher__hint {
-  font-size: 11px;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: var(--ink-mute);
-  text-align: center;
-  margin: 0;
-}
-
-.switcher__group {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-.switcher__group-label {
-  font-family: var(--font-serif);
-  font-size: 10px;
-  letter-spacing: var(--track-tracked);
-  text-transform: uppercase;
-  color: var(--ink-mute);
-  padding-bottom: 4px;
-  border-bottom: 1px solid var(--ink-line);
-}
-
-.switcher__list {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-  gap: 8px;
-}
-
-.switcher__item {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 2px;
-  padding: 12px 14px;
-  border: 1px solid var(--ink-line);
-  border-radius: 12px;
-  background: var(--paper-soft);
-  color: var(--ink);
-  text-align: left;
+  place-items: center;
   cursor: pointer;
-  transition: background var(--dur-fast) var(--ease-standard);
+  transition:
+    background var(--dur-fast) var(--ease-standard),
+    transform var(--dur-fast) var(--ease-standard);
 }
-.switcher__item:hover { background: rgba(27,22,18,0.06); }
-
-.switcher__item[aria-current='true'] {
-  background: var(--ink);
-  color: var(--paper);
-  border-color: var(--ink);
+.pager__btn:hover {
+  background: rgba(0, 0, 0, 0.06);
 }
-
-.switcher__item-num {
-  font-family: var(--font-serif);
-  font-size: 10px;
-  letter-spacing: var(--track-tracked);
-  text-transform: uppercase;
-  opacity: 0.65;
+.pager__btn:active { transform: scale(0.94); }
+.pager__btn:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 2px #FFFFFF, 0 0 0 4px var(--blue-accent);
 }
 
-.switcher__item-name {
-  font-size: 13px;
-  font-weight: 600;
-  letter-spacing: -0.005em;
+/* 다크 스킴(잠금/봉투/공유 등)에서 페이저가 묻히지 않게 반전 */
+body[data-scheme='dark'] .pager {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(255, 255, 255, 0.10);
+}
+body[data-scheme='dark'] .pager__btn {
+  color: #F4F4F4;
+}
+body[data-scheme='dark'] .pager__btn:hover {
+  background: rgba(255, 255, 255, 0.10);
 }
 
 /* ====================================================================
@@ -568,11 +597,11 @@ body {
 .ed-btn--ghost:hover { background: rgba(27,22,18,0.04); }
 
 .ed-btn--green {
-  background: var(--ink-green);
+  background: var(--grad-green-cta);
   color: #F2EFE7;
   box-shadow: 0 6px 16px rgba(42, 74, 53, 0.18);
 }
-.ed-btn--green:hover { background: #1F3D2B; }
+.ed-btn--green:hover { filter: brightness(1.08); }
 
 .ed-btn--ink {
   background: var(--navy-ink);
@@ -836,10 +865,10 @@ body {
   font-weight: 700;
   color: #fff;
   margin-left: -7px;
-  background: linear-gradient(135deg, #FF93D7, #70D2FF);
+  background: var(--grad-avatar-rose);
 }
 .pair-avatar:first-child { margin-left: 0; }
-.pair-avatar--ink { background: linear-gradient(135deg, #2A3B7A, #15203F); }
+.pair-avatar--ink { background: var(--grad-avatar-ink); }
 
 /* ====================================================================
    PAGING DOTS (multi-shelf)
@@ -885,7 +914,7 @@ body {
   position: absolute;
   left: 8%; right: 8%; bottom: -2px;
   height: 14px;
-  background: radial-gradient(60% 100% at 50% 0%, rgba(0,0,0,0.18), transparent 70%);
+  background: var(--grad-shelf-floor);
   filter: blur(1.5px);
   z-index: -1;
 }
@@ -901,7 +930,7 @@ body {
   flex: 0 0 auto;
   width: 22px;
   height: 140px;
-  background: var(--spine, #B0394A);
+  background: var(--grad-leather-spine);
   position: relative;
   border-radius: 1px 2px 0 0;
   box-shadow:
@@ -986,7 +1015,7 @@ body {
 .cover {
   width: 184px;
   height: 256px;
-  background: var(--navy-ink);
+  background: var(--grad-cover-navy);
   border-radius: 3px 8px 8px 3px;
   position: relative;
   box-shadow:
@@ -1022,9 +1051,7 @@ body {
 
 .cover__plate-art {
   flex: 1;
-  background:
-    radial-gradient(60% 60% at 50% 50%, rgba(255,255,255,0.06) 0%, rgba(255,255,255,0) 70%),
-    linear-gradient(180deg, #0E1633 0%, #050816 100%);
+  background: var(--grad-cover-plate-navy);
   border: 0.5px solid rgba(255,255,255,0.14);
   display: grid;
   place-items: center;
@@ -1054,7 +1081,7 @@ body {
 .cover--sm { width: 116px; height: 168px; }
 
 .cover--rose {
-  background: var(--rose-cover);
+  background: var(--grad-cover-rose);
   box-shadow:
     0 0 0 1px rgba(0,0,0,0.32) inset,
     inset 10px 0 18px rgba(0,0,0,0.22),
@@ -1066,9 +1093,7 @@ body {
 .cover--rose .cover__meta-line,
 .cover--rose .cover__meta-title { color: rgba(245, 229, 211, 0.92); }
 .cover--rose .cover__plate-art {
-  background:
-    radial-gradient(60% 60% at 50% 50%, rgba(245,229,211,0.10) 0%, rgba(245,229,211,0) 70%),
-    linear-gradient(180deg, #8E3522 0%, #5C1F12 100%);
+  background: var(--grad-cover-plate-rose);
   border-color: rgba(245, 229, 211, 0.18);
 }
 

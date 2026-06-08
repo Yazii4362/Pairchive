@@ -1,68 +1,70 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>pairchive — THE PERSONAL CURATION</title>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Noto+Sans+KR:wght@300;400;500&display=swap">
-    <link rel="stylesheet" href="./css/style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+  <meta name="color-scheme" content="light dark" />
+  <meta name="theme-color" content="#0F0F0F" />
+  <title>Pairchive · THE PERSONAL CURATION</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+  <link rel="stylesheet" href="./css/font.css" />
+  <link rel="stylesheet" href="./css/global.css" />
+
+  <link rel="stylesheet" href="./css/screens/intro.css" />
+  <link rel="stylesheet" href="./css/screens/onboarding.css" />
+  <link rel="stylesheet" href="./css/screens/empty-shelf.css" />
+  <link rel="stylesheet" href="./css/screens/shelf.css" />
+  <link rel="stylesheet" href="./css/screens/reading.css" />
+  <link rel="stylesheet" href="./css/screens/capture.css" />
+  <link rel="stylesheet" href="./css/screens/share-sheet.css" />
+  <link rel="stylesheet" href="./css/screens/save-sheet.css" />
+  <link rel="stylesheet" href="./css/screens/reaction.css" />
+  <link rel="stylesheet" href="./css/screens/reactions.css" />
+  <link rel="stylesheet" href="./css/screens/close-consent.css" />
+  <link rel="stylesheet" href="./css/screens/close-book.css" />
+  <link rel="stylesheet" href="./css/screens/wow-moment.css" />
+  <link rel="stylesheet" href="./css/screens/report.css" />
+  <link rel="stylesheet" href="./css/screens/invite.css" />
+  <link rel="stylesheet" href="./css/screens/invite-letter.css" />
+  <link rel="stylesheet" href="./css/screens/lock-noti.css" />
+  <link rel="stylesheet" href="./css/screens/archived.css" />
+  <link rel="stylesheet" href="./css/screens/settings.css" />
+  <link rel="stylesheet" href="./css/screens/solo-empty.css" />
 </head>
-<body>
+<body data-scheme="light">
 
-    <div class="app-container">
-        <main class="main-content">
-            <div class="brand-title-wrap">
-                <h1 class="main-title">THE PERSONAL</h1>
-                <h1 class="main-title sub">CURATION</h1>
-                <p class="main-subtitle">둘만의 시선으로 쌓아 올린 아카이브</p>
-            </div>
-            
-            <div class="dev-nav">
-                <a href="./pages/onboarding.html" class="btn-next-flow">시작하기 (온보딩 이동) →</a>
-            </div>
-        </main>
+  <header id="status-bar" class="status-bar" data-hidden="false" aria-hidden="true">
+    <span class="status-bar__time">9:41</span>
+    <span class="status-bar__right">
+      <i class="ic ic--signal"></i>
+      <i class="ic ic--wifi"></i>
+      <i class="ic ic--battery"></i>
+    </span>
+  </header>
 
-        <section class="bookshelf-container">
-            <div class="bookshelf-line">
-                <div class="book-spine book-green" style="--book-height: 140px; --book-width: 14px;"></div>
-                <div class="book-spine book-orange-text" style="--book-height: 165px; --book-width: 24px;">
-                    <span class="spine-text vertical">PAIRCHIVE</span>
-                </div>
-                <div class="book-spine book-dark" style="--book-height: 160px; --book-width: 12px;">
-                    <span class="spine-text vertical small">2026.06</span>
-                </div>
-                <div class="book-spine book-pink" style="--book-height: 180px; --book-width: 26px;">
-                    <span class="spine-text vertical">in Paris</span>
-                </div>
-                <div class="book-spine book-light-pink" style="--book-height: 172px; --book-width: 16px;">
-                    <span class="spine-text vertical">Acne Studios</span>
-                </div>
-                
-                <div class="book-cover-main" style="--book-height: 195px; --book-width: 105px;">
-                    <div class="cover-inner">
-                        <div class="cover-photo">
-                            <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=200" alt="Curation Art">
-                        </div>
-                        <span class="cover-mini-text">VOLUME 01</span>
-                    </div>
-                </div>
+  <main id="app" class="screen-host" data-state="idle"></main>
 
-                <div class="book-spine book-red" style="--book-height: 182px; --book-width: 16px;">
-                    <span class="spine-text vertical">The Monocle Guide</span>
-                </div>
-                <div class="book-spine book-blue" style="--book-height: 175px; --book-width: 22px;">
-                    <span class="spine-text vertical">Interior Design</span>
-                </div>
-                <div class="book-spine book-white" style="--book-height: 188px; --book-width: 30px;">
-                    <span class="spine-text vertical bold">S,M,L,XL</span>
-                </div>
-                <div class="book-spine book-yellow" style="--book-height: 162px; --book-width: 16px;">
-                    <span class="spine-text vertical dark-text">David Hockney</span>
-                </div>
-                <div class="book-spine book-brown" style="--book-height: 150px; --book-width: 18px;"></div>
-            </div>
-        </section>
-    </div>
+  <footer id="home-indicator" class="home-indicator" data-hidden="false" aria-hidden="true">
+    <span class="home-indicator__bar"></span>
+  </footer>
 
+  <!-- 미니 페이저 — 우하단에 prev / next 두 버튼 -->
+  <nav class="pager" aria-label="화면 이동">
+    <button id="pager-prev" class="pager__btn" type="button" aria-label="이전 화면">
+      <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
+        <path d="M15 6l-6 6 6 6" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </button>
+    <button id="pager-next" class="pager__btn" type="button" aria-label="다음 화면">
+      <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
+        <path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </button>
+  </nav>
+
+  <script type="module" src="./js/app.js"></script>
 </body>
 </html>

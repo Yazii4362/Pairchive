@@ -3,9 +3,7 @@
    ==================================================================== */
 
 .screen--lock-noti {
-  background:
-    radial-gradient(80% 60% at 50% 15%, rgba(255, 255, 255, 0.06) 0%, transparent 60%),
-    linear-gradient(180deg, #0B1226 0%, #1B2348 55%, #2A3B7A 100%);
+  background: var(--grad-ink-night);
   color: #F2EFE7;
 }
 
@@ -52,7 +50,7 @@
   width: 36px;
   height: 36px;
   border-radius: 8px;
-  background: linear-gradient(135deg, #15203F, #2A3B7A);
+  background: var(--grad-avatar-ink);
   color: #F2EFE7;
   display: grid;
   place-items: center;

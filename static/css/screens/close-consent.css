@@ -37,7 +37,7 @@
 }
 
 .consent-circle--agreed {
-  background: var(--ink-green);
+  background: var(--grad-green-cta);
   border-color: var(--ink-green);
   color: #F2EFE7;
   box-shadow: 0 10px 22px rgba(42, 74, 53, 0.28);

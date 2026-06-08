@@ -3,9 +3,7 @@
    ==================================================================== */
 
 .screen--capture {
-  background:
-    radial-gradient(120% 70% at 50% 20%, rgba(255, 246, 232, 0.7) 0%, transparent 70%),
-    linear-gradient(180deg, #2A2A2A 0%, #1B1B1B 100%);
+  background: var(--grad-capture-host);
   color: #F2EFE7;
 }
 
