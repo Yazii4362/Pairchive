@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="color-scheme" content="light" />
+  <title>4c. Save to book · Pairchive</title>
+  <link rel="stylesheet" href="../css/tokens.css" />
+  <link rel="stylesheet" href="../css/common.css" />
+</head>
+<body class="editorial-host">
+  <section class="editorial editorial--soft">
+
+          <div class="ed-status" aria-hidden="true">
+            <span>9:41</span>
+            <span class="ed-status__right">
+              <span class="ed-icon-signal"></span>
+              <span class="ed-icon-wifi"></span>
+              <span class="ed-icon-battery"></span>
+            </span>
+          </div>
+
+          <div class="ed-page" style="padding: 16px 24px 16px;">
+
+            <!-- 헤드라인 -->
+            <h1 class="ed-script" style="text-align:left; font-size: 28px; margin-top: 6px;">
+              Save to book
+            </h1>
+
+            <!-- 링크 미리보기 -->
+            <article class="link-tile" style="margin-top: 14px; padding: 10px;">
+              <span class="link-tile__thumb" style="
+                  --thumb:#7E6F9E;
+                  background: linear-gradient(135deg, #9586BC, #5E4F8B);
+                  width: 44px; height: 44px; border-radius: 8px;
+                " aria-hidden="true"></span>
+              <div class="link-tile__body">
+                <p class="link-tile__title" style="font-size: 13px;">
+                  Color Grading — Bringing Mood Into Film
+                </p>
+                <p class="link-tile__domain"
+                   style="text-transform:none; letter-spacing:0.02em; font-size: 11px;">
+                  ↗ youtube.com
+                </p>
+              </div>
+            </article>
+
+            <!-- SELECT BOOK -->
+            <p class="ed-track-label" style="margin: 22px 0 10px;">Select book</p>
+
+            <div class="book-cards" role="radiogroup" aria-label="저장할 책 선택">
+              <button class="book-card" type="button" aria-pressed="true">
+                <span class="book-card__spine-edge" style="--spine: rgba(242,239,231,0.55);" aria-hidden="true"></span>
+                <span class="book-card__name">Reading</span>
+              </button>
+              <button class="book-card" type="button" aria-pressed="false">
+                <span class="book-card__spine-edge" style="--spine: #D89AAE;" aria-hidden="true"></span>
+                <span class="book-card__name">Inspo</span>
+              </button>
+              <button class="book-card" type="button" aria-pressed="false">
+                <span class="book-card__spine-edge" style="--spine: #2A4A35;" aria-hidden="true"></span>
+                <span class="book-card__name">Film</span>
+              </button>
+              <button class="book-card book-card--add" type="button"
+                      aria-label="새 책 만들기">
+                <span class="book-card__name">New</span>
+              </button>
+            </div>
+
+            <!-- NOTE -->
+            <p class="ed-track-label" style="margin: 22px 0 8px;">Note</p>
+            <input
+              class="ed-input"
+              type="text"
+              placeholder="떠오른 생각을 남겨주세요"
+              aria-label="저장할 때 남길 메모"
+            />
+
+          </div>
+
+          <footer class="ed-footer">
+            <button type="button" class="ed-btn ed-btn--block" style="letter-spacing: 0.32em;">
+              STASH&nbsp;IT
+            </button>
+          </footer>
+
+        </section>
+</body>
+</html>
