@@ -1,0 +1,392 @@
+/* ============================================================
+   Pairchive · Design Tokens
+   ----------------------------------------------------------
+   ▸ 7-Scale Color System  (Neutrals / Pear / Pink / Green / Orange / Blue)
+   ▸ Brand primary  = Index Green
+   ▸ Base UI        = Neutrals (B&W)
+   ▸ Typography     = Apple system font stack (SF Pro / Pretendard fallback)
+   ▸ HIG geometry   = 44pt hit target, ios curves, safe-area
+   ▸ Dark mode      = automatic via prefers-color-scheme + data-theme="dark"
+   ============================================================ */
+
+:root {
+  /* — System font stack ───────────────────────────────────────── */
+  --font-sans:
+    -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'SF Pro Display',
+    'Helvetica Neue', 'Segoe UI', 'Apple SD Gothic Neo', 'Noto Sans KR',
+    sans-serif;
+  --font-rounded:
+    ui-rounded, -apple-system, 'SF Pro Rounded', system-ui, sans-serif;
+  --font-serif:
+    ui-serif, 'New York', Georgia, 'Times New Roman', serif;
+  --font-mono:
+    ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono',
+    'Courier New', monospace;
+
+  /* ═══════════════════════════════════════════════════════════
+     7-SCALE PALETTE · LIGHT MODE
+     (approximated from the spec sheet — easy to fine-tune here)
+     ═══════════════════════════════════════════════════════════ */
+
+  /* Neutrals — base UI ramp */
+  --neutral-50:  #FAF9F7;
+  --neutral-100: #F4F2EE;
+  --neutral-200: #E6E6E1;
+  --neutral-300: #D6D6D1;
+  --neutral-400: #A8A5A6;
+  --neutral-600: #333333;
+  --neutral-900: #0A0A0A;
+
+  /* Pear Yellow — secondary accent */
+  --pear-50:  #FFFDE8;
+  --pear-100: #FFF8B7;
+  --pear-200: #FFE587;
+  --pear-300: #FFE74D;
+  --pear-400: #FFC800;
+  --pear-600: #DB8200;
+  --pear-900: #835800;
+
+  /* Archive Pink */
+  --pink-50:  #FFF0F7;
+  --pink-100: #FFD6E8;
+  --pink-200: #FFB0D3;
+  --pink-300: #FF7BA7;
+  --pink-400: #FF4FA3;
+  --pink-600: #B83870;
+  --pink-900: #4D2E66;
+
+  /* Index Green ★ brand primary */
+  --green-50:  #EBFFEE;
+  --green-100: #C0F0D0;
+  --green-200: #ABE6BD;
+  --green-300: #6FDC8C;
+  --green-400: #2DB854;   /* ← brand primary */
+  --green-600: #209148;
+  --green-900: #0C5031;
+
+  /* Story Orange */
+  --orange-50:  #FFF1EA;
+  --orange-100: #FFCFC4;
+  --orange-200: #FFB79C;
+  --orange-300: #FF9070;
+  --orange-400: #FF8A36;
+  --orange-600: #E16312;
+  --orange-900: #803219;
+
+  /* Deep Blue — also iOS-style tint/system link */
+  --blue-50:  #EAF1FF;
+  --blue-100: #D6E4FF;
+  --blue-200: #AECCFF;
+  --blue-300: #5B95FF;
+  --blue-400: #2568E8;
+  --blue-600: #1546B9;
+  --blue-900: #0A2A7A;
+
+  /* ─── Semantic role aliases ─────────────────────────────────── */
+  --brand-primary:        var(--green-400);
+  --brand-primary-soft:   var(--green-100);
+  --brand-primary-strong: var(--green-600);
+  --brand-primary-ink:    var(--green-900);
+
+  --brand-secondary:      var(--pink-400);
+  --brand-secondary-soft: var(--pink-100);
+
+  --brand-accent:         var(--pear-400);
+  --brand-warning:        var(--orange-400);
+  --brand-info:           var(--blue-400);
+
+  --system-tint:          var(--blue-400);      /* iOS standard text actions  */
+  --system-tint-red:      #FF3B30;
+  --system-tint-green:    var(--green-400);
+
+  /* ─── Surfaces (light) ──────────────────────────────────────── */
+  --system-background:           var(--neutral-50);
+  --system-background-secondary: var(--neutral-100);
+  --system-background-tertiary:  #FFFFFF;
+  --system-grouped-background:   var(--neutral-100);
+  --system-grouped-secondary:    var(--neutral-50);
+  --system-grouped-tertiary:     var(--neutral-200);
+
+  --color-surface-base: var(--system-background);
+  --color-surface-1:    var(--system-background-secondary);
+  --color-surface-2:    var(--neutral-200);
+  --color-surface-3:    var(--neutral-300);
+  --color-surface-4:    #C2C2BD;
+
+  /* ─── Labels & fills ────────────────────────────────────────── */
+  --label-primary:    var(--neutral-900);
+  --label-secondary:  rgba(10, 10, 10, 0.6);
+  --label-tertiary:   rgba(10, 10, 10, 0.32);
+  --label-quaternary: rgba(10, 10, 10, 0.18);
+
+  --fill-primary:    rgba(10, 10, 10, 0.10);
+  --fill-secondary:  rgba(10, 10, 10, 0.08);
+  --fill-tertiary:   rgba(10, 10, 10, 0.06);
+  --fill-quaternary: rgba(10, 10, 10, 0.04);
+
+  --separator:        rgba(10, 10, 10, 0.12);
+  --separator-opaque: var(--neutral-200);
+
+  --color-text:    var(--label-primary);
+  --color-subtext: var(--label-secondary);
+  --color-muted:   var(--label-secondary);
+  --color-border:  var(--separator);
+
+  /* ─── Gradients ─────────────────────────────────────────────── */
+  --gradient-brand:
+    linear-gradient(135deg, var(--green-300) 0%, var(--green-600) 100%);
+  --gradient-warm:
+    linear-gradient(135deg, var(--orange-300) 0%, var(--pink-400) 100%);
+  --gradient-archive:
+    linear-gradient(135deg, var(--pink-200) 0%, var(--pear-300) 100%);
+  --gradient-night:
+    linear-gradient(180deg, #1A1A1F 0%, #0A0A0A 100%);
+
+  /* ─── HIG geometry ──────────────────────────────────────────── */
+  --hit-target:    44px;
+  --nav-bar-h:     44px;
+  --large-title-h: 52px;
+  --tab-bar-h:     49px;
+
+  --radius-sm:    8px;
+  --radius-base:  12px;
+  --radius-soft:  16px;
+  --radius-lg:    22px;
+  --radius-xl:    28px;
+  --radius-pill:  9999px;
+  --radius-sheet: 10px;
+
+  /* ─── Shadow & blur ────────────────────────────────────────── */
+  --shadow-soft:  0 16px 40px rgba(15, 23, 42, 0.10);
+  --shadow-card:  0 12px 28px rgba(15, 23, 42, 0.05);
+  --shadow-glow:  0 0 40px rgba(45, 184, 84, 0.20);
+  --shadow-deep:  0 28px 80px rgba(15, 23, 42, 0.12);
+  --shadow-modal: 0 -8px 30px rgba(0, 0, 0, 0.12);
+  --shadow-book:  0 18px 36px -10px rgba(10, 10, 10, 0.35);
+  --blur-chrome:  saturate(180%) blur(20px);
+
+  /* ─── Motion (iOS curves) ──────────────────────────────────── */
+  --ease-standard:   cubic-bezier(0.4, 0.0, 0.2, 1);
+  --ease-emphasized: cubic-bezier(0.2, 0.0, 0,   1);
+  --ease-enter:      cubic-bezier(0.0, 0.0, 0.2, 1);
+  --ease-exit:       cubic-bezier(0.4, 0.0, 1.0, 1);
+  --dur-fast: 180ms;
+  --dur-base: 240ms;
+  --dur-slow: 360ms;
+
+  /* ─── Focus ring ───────────────────────────────────────────── */
+  --focus-ring: 0 0 0 2px var(--system-background),
+                0 0 0 4px var(--brand-primary);
+
+  color-scheme: light dark;
+}
+
+/* ============================================================
+   DARK MODE — shared block via custom property indirection
+   The variables below are applied in both:
+     (a) @media (prefers-color-scheme: dark)  → automatic
+     (b) :root[data-theme='dark']             → forced toggle
+   Mixin pattern keeps both selectors in sync.
+   ============================================================ */
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) {
+    /* Neutrals — inverted ramp */
+    --neutral-50:  #0B0B0C;
+    --neutral-100: #121214;
+    --neutral-200: #1C1C1E;
+    --neutral-300: #2A2A2D;
+    --neutral-400: #5A5A5F;
+    --neutral-600: #B6B6BB;
+    --neutral-900: #FFFFFF;
+
+    /* Vivid ramps — slightly desaturated for dark UI */
+    --pear-50:  #2A2400;
+    --pear-100: #443900;
+    --pear-200: #756100;
+    --pear-300: #A78200;
+    --pear-400: #F2C400;
+    --pear-600: #FFE05C;
+    --pear-900: #FFF8B7;
+
+    --pink-50:  #2B0A17;
+    --pink-100: #3D1021;
+    --pink-200: #5A1A35;
+    --pink-300: #8A2854;
+    --pink-400: #FF4FA3;
+    --pink-600: #FF93C1;
+    --pink-900: #FFD6E8;
+
+    --green-50:  #042310;
+    --green-100: #073A19;
+    --green-200: #0C5031;
+    --green-300: #178F46;
+    --green-400: #2DB854;   /* brand primary stays bright on dark */
+    --green-600: #6FDC8C;
+    --green-900: #C0F0D0;
+
+    --orange-50:  #2A1208;
+    --orange-100: #401D12;
+    --orange-200: #6E2D17;
+    --orange-300: #B04A20;
+    --orange-400: #FF8A36;
+    --orange-600: #FFB79C;
+    --orange-900: #FFCFC4;
+
+    --blue-50:  #051124;
+    --blue-100: #0E1D3D;
+    --blue-200: #18306E;
+    --blue-300: #2952AE;
+    --blue-400: #2568E8;
+    --blue-600: #6A93FF;
+    --blue-900: #D6E4FF;
+
+    /* Surfaces */
+    --system-background:           #000000;
+    --system-background-secondary: var(--neutral-100);
+    --system-background-tertiary:  var(--neutral-200);
+    --system-grouped-background:   #000000;
+    --system-grouped-secondary:    var(--neutral-100);
+    --system-grouped-tertiary:     var(--neutral-200);
+
+    --color-surface-base: var(--system-background);
+    --color-surface-1:    var(--system-background-secondary);
+    --color-surface-2:    var(--neutral-200);
+    --color-surface-3:    var(--neutral-300);
+    --color-surface-4:    var(--neutral-400);
+
+    /* Labels & fills */
+    --label-primary:    var(--neutral-900);
+    --label-secondary:  rgba(255, 255, 255, 0.6);
+    --label-tertiary:   rgba(255, 255, 255, 0.3);
+    --label-quaternary: rgba(255, 255, 255, 0.18);
+
+    --fill-primary:    rgba(255, 255, 255, 0.18);
+    --fill-secondary:  rgba(255, 255, 255, 0.14);
+    --fill-tertiary:   rgba(255, 255, 255, 0.10);
+    --fill-quaternary: rgba(255, 255, 255, 0.06);
+
+    --separator:        rgba(255, 255, 255, 0.16);
+    --separator-opaque: var(--neutral-300);
+
+    /* Semantic */
+    --system-tint:     var(--blue-400);
+    --system-tint-red: #FF453A;
+
+    --brand-primary:        var(--green-400);
+    --brand-primary-soft:   var(--green-200);
+    --brand-primary-strong: var(--green-600);
+    --brand-primary-ink:    var(--green-900);
+
+    --color-text:    var(--label-primary);
+    --color-subtext: var(--label-secondary);
+    --color-muted:   var(--label-secondary);
+    --color-border:  var(--separator);
+
+    --shadow-card:  0 12px 28px rgba(0, 0, 0, 0.55);
+    --shadow-deep:  0 28px 80px rgba(0, 0, 0, 0.70);
+    --shadow-modal: 0 -8px 30px rgba(0, 0, 0, 0.65);
+    --shadow-book:  0 18px 36px -10px rgba(0, 0, 0, 0.65);
+
+    --focus-ring: 0 0 0 2px var(--system-background),
+                  0 0 0 4px var(--brand-primary);
+  }
+}
+
+/* Force dark theme via attribute (kept in lock-step with the media query above) */
+:root[data-theme='dark'] {
+  --neutral-50:  #0B0B0C;
+  --neutral-100: #121214;
+  --neutral-200: #1C1C1E;
+  --neutral-300: #2A2A2D;
+  --neutral-400: #5A5A5F;
+  --neutral-600: #B6B6BB;
+  --neutral-900: #FFFFFF;
+
+  --pear-50:  #2A2400;
+  --pear-100: #443900;
+  --pear-200: #756100;
+  --pear-300: #A78200;
+  --pear-400: #F2C400;
+  --pear-600: #FFE05C;
+  --pear-900: #FFF8B7;
+
+  --pink-50:  #2B0A17;
+  --pink-100: #3D1021;
+  --pink-200: #5A1A35;
+  --pink-300: #8A2854;
+  --pink-400: #FF4FA3;
+  --pink-600: #FF93C1;
+  --pink-900: #FFD6E8;
+
+  --green-50:  #042310;
+  --green-100: #073A19;
+  --green-200: #0C5031;
+  --green-300: #178F46;
+  --green-400: #2DB854;
+  --green-600: #6FDC8C;
+  --green-900: #C0F0D0;
+
+  --orange-50:  #2A1208;
+  --orange-100: #401D12;
+  --orange-200: #6E2D17;
+  --orange-300: #B04A20;
+  --orange-400: #FF8A36;
+  --orange-600: #FFB79C;
+  --orange-900: #FFCFC4;
+
+  --blue-50:  #051124;
+  --blue-100: #0E1D3D;
+  --blue-200: #18306E;
+  --blue-300: #2952AE;
+  --blue-400: #2568E8;
+  --blue-600: #6A93FF;
+  --blue-900: #D6E4FF;
+
+  --system-background:           #000000;
+  --system-background-secondary: var(--neutral-100);
+  --system-background-tertiary:  var(--neutral-200);
+  --system-grouped-background:   #000000;
+  --system-grouped-secondary:    var(--neutral-100);
+  --system-grouped-tertiary:     var(--neutral-200);
+
+  --color-surface-base: var(--system-background);
+  --color-surface-1:    var(--system-background-secondary);
+  --color-surface-2:    var(--neutral-200);
+  --color-surface-3:    var(--neutral-300);
+  --color-surface-4:    var(--neutral-400);
+
+  --label-primary:    var(--neutral-900);
+  --label-secondary:  rgba(255, 255, 255, 0.6);
+  --label-tertiary:   rgba(255, 255, 255, 0.3);
+  --label-quaternary: rgba(255, 255, 255, 0.18);
+
+  --fill-primary:    rgba(255, 255, 255, 0.18);
+  --fill-secondary:  rgba(255, 255, 255, 0.14);
+  --fill-tertiary:   rgba(255, 255, 255, 0.10);
+  --fill-quaternary: rgba(255, 255, 255, 0.06);
+
+  --separator:        rgba(255, 255, 255, 0.16);
+  --separator-opaque: var(--neutral-300);
+
+  --system-tint:     var(--blue-400);
+  --system-tint-red: #FF453A;
+
+  --brand-primary:        var(--green-400);
+  --brand-primary-soft:   var(--green-200);
+  --brand-primary-strong: var(--green-600);
+  --brand-primary-ink:    var(--green-900);
+
+  --color-text:    var(--label-primary);
+  --color-subtext: var(--label-secondary);
+  --color-muted:   var(--label-secondary);
+  --color-border:  var(--separator);
+
+  --shadow-card:  0 12px 28px rgba(0, 0, 0, 0.55);
+  --shadow-deep:  0 28px 80px rgba(0, 0, 0, 0.70);
+  --shadow-modal: 0 -8px 30px rgba(0, 0, 0, 0.65);
+  --shadow-book:  0 18px 36px -10px rgba(0, 0, 0, 0.65);
+
+  --focus-ring: 0 0 0 2px var(--system-background),
+                0 0 0 4px var(--brand-primary);
+}

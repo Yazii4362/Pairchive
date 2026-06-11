@@ -1,0 +1,116 @@
+/* ====================================================================
+   16 · 온보딩 코치마크 — Dim overlay + 3-step tooltip
+   ==================================================================== */
+
+.screen--coachmark {
+  background: var(--paper);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Spotlit element raises above the dim layer */
+.screen--coachmark .is-spotlit {
+  position: relative;
+  z-index: 52;
+  box-shadow:
+    0 0 0 4px rgba(255, 255, 255, 1),
+    0 0 0 10px rgba(45, 184, 84, 0.45),
+    0 24px 60px rgba(0, 0, 0, 0.35);
+  animation: coach-pulse 1.8s var(--ease-emphasized) infinite;
+  border-radius: 8px;
+}
+
+@keyframes coach-pulse {
+  0%, 100% { box-shadow: 0 0 0 4px #fff, 0 0 0 10px rgba(45, 184, 84, 0.40), 0 24px 60px rgba(0, 0, 0, 0.35); }
+  50%      { box-shadow: 0 0 0 4px #fff, 0 0 0 14px rgba(45, 184, 84, 0.55), 0 28px 70px rgba(0, 0, 0, 0.45); }
+}
+
+/* ── Coach overlay container ─────────────────────────────────────── */
+.coach {
+  position: absolute;
+  inset: 0;
+  z-index: 50;
+  display: grid;
+  place-items: end center;
+  padding: 22px;
+}
+
+.coach__dim {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+}
+
+/* ── Single step card (only the active one is visible) ────────── */
+.coach__step {
+  position: relative;
+  z-index: 55;
+  width: min(100%, 420px);
+  background: var(--paper);
+  border-radius: var(--r-lg);
+  padding: 22px 22px 16px;
+  display: none;
+  flex-direction: column;
+  gap: 10px;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.35);
+  margin-bottom: env(safe-area-inset-bottom, 0);
+}
+
+.coach__step.is-active {
+  display: flex;
+  animation: coach-in var(--dur-base) var(--ease-emphasized);
+}
+
+@keyframes coach-in {
+  from { transform: translateY(14px); opacity: 0; }
+  to   { transform: translateY(0);    opacity: 1; }
+}
+
+.coach__index {
+  font-family: var(--font-serif);
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink-mute);
+}
+
+.coach__title {
+  font-family: var(--font-serif);
+  font-size: 22px;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+  margin: 4px 0 0;
+  color: var(--ink);
+}
+
+.coach__body {
+  margin: 6px 0 0;
+  font-size: 14px;
+  line-height: 1.55;
+  color: var(--ink-soft);
+}
+
+.coach__body strong {
+  color: var(--ink);
+  font-weight: 600;
+}
+
+.coach__actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.coach__actions .ed-btn {
+  min-width: 100px;
+}
+
+/* Reduce motion — disable pulse + slide-in */
+@media (prefers-reduced-motion: reduce) {
+  .screen--coachmark .is-spotlit { animation: none; }
+  .coach__step.is-active         { animation: none; }
+}

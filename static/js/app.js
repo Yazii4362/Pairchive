@@ -9,6 +9,7 @@
 
 import { renderIntro }         from './components/intro.js';
 import { renderOnboarding }    from './components/onboarding.js';
+import { renderCoachmark }     from './components/coachmark.js';
 import { renderEmptyShelf }    from './components/empty-shelf.js';
 import { renderShelf }         from './components/shelf.js';
 import { renderReading }       from './components/reading.js';
@@ -27,6 +28,10 @@ import { renderLockNoti, renderDeeplink }     from './components/lock-noti.js';
 import { renderArchived, renderDetailRead }   from './components/archived.js';
 import { renderSettings }      from './components/settings.js';
 import { renderSoloEmpty }     from './components/solo-empty.js';
+import { renderPairHub }       from './components/pair-hub.js';
+import { renderNotifications } from './components/notifications.js';
+import { renderBookSettings }  from './components/book-settings.js';
+import { renderEdgeBlocked, renderEdgeReopen } from './components/edge-cases.js';
 
 /* ── 전역 상태 ──────────────────────────────────────────────────── */
 export const appState = {
@@ -40,28 +45,71 @@ export const appState = {
   },
 };
 
-/* ── 화면 레지스트리 — 순서가 곧 ←/→ 이동 흐름 ─────────────────── */
+/* ── 화면 레지스트리 — 순서가 곧 ←/→ 이동 흐름 ───────────────────
+ *
+ *  Pairchive 최종 플로우 (브리프 기준):
+ *
+ *  ① 온보딩            : intro → onboarding → coachmark  (chromeless)
+ *  ② 홈                : empty-shelf → shelf
+ *  ③ 책 상세           : reading → reactions / reaction
+ *  ④ 페어 탭           : pair-hub → invite-letter
+ *  ⑤ 알림 센터         : notifications
+ *  ⑥ 공유시트(외부)    : share-sheet → save-sheet → capture
+ *  ⑦ 책 종료/리포트    : close-consent → close-book → report → wow-moment
+ *  ⑧ 간직된 책         : archived (read-only)
+ *  ⑨ 책 설정/탈퇴      : book-settings
+ *  ⑩ 시스템            : lock-noti (잠금 알림)
+ *  ⑪ 에지 케이스       : edge-blocked / edge-reopen
+ *  ⑫ 웹 초대장 프리뷰  : invite
+ *  ⑬ 설정/1인 모드     : settings / solo-empty
+ *
+ * ─────────────────────────────────────────────────────────────── */
 const screens = [
+  /* ── ① 온보딩 ─────────────────────────────────────────────── */
   { id: 'intro',          render: renderIntro,         group: 'enter' },
   { id: 'onboarding',     render: renderOnboarding,    group: 'enter' },
+  { id: 'coachmark',      render: renderCoachmark,     group: 'enter' },
+
+  /* ── ② 홈 ─────────────────────────────────────────────────── */
   { id: 'empty-shelf',    render: renderEmptyShelf,    group: 'cycle' },
   { id: 'shelf',          render: renderShelf,         group: 'cycle' },
+
+  /* ── ③ 책 상세 ────────────────────────────────────────────── */
   { id: 'reading',        render: renderReading,       group: 'cycle' },
   { id: 'capture',        render: renderCapture,       group: 'cycle' },
   { id: 'share-sheet',    render: renderShareSheet,    group: 'cycle' },
   { id: 'save-sheet',     render: renderSaveSheet,     group: 'cycle' },
   { id: 'reaction',       render: renderReaction,      group: 'cycle' },
   { id: 'reactions',      render: renderReactions,     group: 'cycle' },
+
+  /* ── ⑦ 책 종료 → 리포트 → 와우 모먼트 ─────────────────────── */
   { id: 'close-consent',  render: renderCloseConsent,  group: 'cycle' },
   { id: 'close-book',     render: renderCloseBook,     group: 'cycle' },
   { id: 'wow-moment',     render: renderWowMoment,     group: 'cycle' },
   { id: 'report',         render: renderReport,        group: 'cycle' },
+
+  /* ── ④ 페어 탭 / ⑤ 알림 / ⑨ 책 설정 (NEW) ────────────────── */
+  { id: 'pair-hub',       render: renderPairHub,       group: 'extra' },
+  { id: 'notifications',  render: renderNotifications, group: 'extra' },
+  { id: 'book-settings',  render: renderBookSettings,  group: 'extra' },
+
+  /* ── ⑪ 에지 케이스 (NEW) ──────────────────────────────────── */
+  { id: 'edge-blocked',   render: renderEdgeBlocked,   group: 'extra' },
+  { id: 'edge-reopen',    render: renderEdgeReopen,    group: 'extra' },
+
+  /* ── ⑫ 초대 페이지 / 발송 ─────────────────────────────────── */
   { id: 'invite',         render: renderInvite,        group: 'extra' },
   { id: 'invite-letter',  render: renderInviteLetter,  group: 'extra' },
+
+  /* ── ⑩ 시스템 ──────────────────────────────────────────────── */
   { id: 'lock-noti',      render: renderLockNoti,      group: 'extra' },
   { id: 'deeplink',       render: renderDeeplink,      group: 'alias', hidden: true },
+
+  /* ── ⑧ 간직된 책 ───────────────────────────────────────────── */
   { id: 'archived',       render: renderArchived,      group: 'extra' },
   { id: 'detail-read',    render: renderDetailRead,    group: 'alias', hidden: true },
+
+  /* ── ⑬ 앱 설정 / 1인 모드 ─────────────────────────────────── */
   { id: 'settings',       render: renderSettings,      group: 'extra' },
   { id: 'solo-empty',     render: renderSoloEmpty,     group: 'extra' },
 ];

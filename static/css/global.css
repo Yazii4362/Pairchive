@@ -6,9 +6,10 @@
 
 :root {
   /* ══════════════════════════════════════════════════════════════════
-     COLOR SYSTEM — Editorial · Black & White + Google Blue accent
+     COLOR SYSTEM — Editorial · Black & White + Index Green accent
      ─ 누리끼리한 페이퍼/베이지 톤 일체 제거
-     ─ Apple-quality 흑백 본문 + 단 하나의 컬러(Google Blue)
+     ─ Apple-quality 흑백 본문 + 단 하나의 브랜드 컬러(Index Green)
+     ─ 7-Scale 시스템 중 Pairchive 의 핵심 브랜드 색 → green-400 (#2DB854)
      ══════════════════════════════════════════════════════════════════ */
 
   /* ── Surface (구 "페이퍼" 이름 호환 유지) ─────────────────────── */
@@ -28,10 +29,17 @@
   --navy-ink:        #0F0F0F;       /* (구) navy 강조 책 → 흑 통일 */
   --rose-ink:        #B0394A;       /* destructive(파괴적 액션)만 유지 */
 
-  /* ── Google Blue accent — 시그니처 컬러 액센트 ────────────────── */
-  --blue-accent:       #1A73E8;
-  --blue-accent-soft:  #4285F4;
-  --blue-accent-mute:  rgba(26, 115, 232, 0.12);
+  /* ── Index Green accent — Pairchive 브랜드 컬러 ───────────────── */
+  --green-accent:       #2DB854;   /* green-400  (primary)   */
+  --green-accent-soft:  #6FDC8C;   /* green-300  (hover)     */
+  --green-accent-deep:  #209148;   /* green-600  (pressed)   */
+  --green-accent-mute:  rgba(45, 184, 84, 0.12);
+
+  /* ── Legacy aliases — 기존 컴포넌트가 --blue-accent 를 쓰는 동안 ── */
+  /*    호환을 깨지 않기 위해 새 그린 값을 가리키도록 리다이렉트     */
+  --blue-accent:       var(--green-accent);
+  --blue-accent-soft:  var(--green-accent-soft);
+  --blue-accent-mute:  var(--green-accent-mute);
 
   /* ── 반응형 브레이크포인트 (참조용) ───────────────────────────── */
   --bp-tablet:   768px;
@@ -152,12 +160,12 @@
   --grad-bloom-amber:  radial-gradient(circle, #D89B6F 0%, transparent 60%);
 
   /* ── CTA & 액센트 ────────────────────────────────────────────────── */
-  /* 구 그린 CTA → Google Blue CTA (라이트 화면에서만 사용) */
-  --grad-green-cta:       linear-gradient(180deg, #1A73E8 0%, #1862C6 100%);
-  --grad-blue-cta:        linear-gradient(180deg, #1A73E8 0%, #1862C6 100%);
+  /* CTA — Index Green (라이트 화면 기본) */
+  --grad-green-cta:       linear-gradient(180deg, #2DB854 0%, #209148 100%);
+  --grad-blue-cta:        var(--grad-green-cta);     /* 호환용 별칭 */
   --grad-paper-cta:       linear-gradient(180deg, #F8F8F8 0%, #E5E5E5 100%);
   --grad-headline-paper:  linear-gradient(180deg, #F8F8F8 0%, #C7C7C7 100%);
-  --grad-highlight-blush: linear-gradient(180deg, transparent 60%, rgba(26, 115, 232, 0.18) 60%);
+  --grad-highlight-blush: linear-gradient(180deg, transparent 60%, rgba(45, 184, 84, 0.20) 60%);
 
   /* ── 아바타 (페어 두 명) — 흑백으로 통일 ─────────────────────────── */
   --grad-avatar-blossom: linear-gradient(135deg, #7A7A7A 0%, #3A3A3A 100%);
@@ -433,7 +441,7 @@ body[data-scheme='dark']  { background: #0F0F0F; }
 .pager__btn:active { transform: scale(0.94); }
 .pager__btn:focus-visible {
   outline: none;
-  box-shadow: 0 0 0 2px #FFFFFF, 0 0 0 4px var(--blue-accent);
+  box-shadow: 0 0 0 2px #FFFFFF, 0 0 0 4px var(--green-accent);
 }
 
 /* 다크 스킴(잠금/봉투/공유 등)에서 페이저가 묻히지 않게 반전 */
