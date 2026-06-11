@@ -1,0 +1,75 @@
+---
+description: PAirchive 디자인 시스템 — 컬러/토큰/UI 사용 원칙
+alwaysApply: true
+---
+
+# PAirchive Design System
+
+## 컬러 시스템
+
+6 hue × 7 step 스케일. 모든 색은 `src/index.css` 의 `@theme` + `[data-theme]` 에서 관리됩니다.
+**라이트/다크 모드는 `[data-theme]` 속성으로 전환** — `ThemeProvider` 가 `localStorage` 영속화.
+
+| Hue family | 7 steps |
+|---|---|
+| `neutral` | 50 / 100 / 200 / 300 / 400 / 600 / 900 |
+| `yellow` (Pear Yellow), `pink` (Archive Pink), `green` (Index Green), `orange` (Story Orange), `blue` (Deep Blue) | 동일 7 steps |
+
+시맨틱 토큰: `bg`, `bg-elevated`, `surface`, `surface-strong`, `fg`, `fg-muted`, `fg-subtle`, `border`, `border-strong`.
+
+## UI 컴포넌트 사용 원칙
+
+**모든 UI(버튼, 사이드바, 탑바, 입력 등)는 다음 색만 사용합니다:**
+
+- `bg-brand` / `bg-brand-strong` (= `green-400` / `green-600`)
+- Neutrals (`bg-bg`, `bg-surface`, `text-fg`, `border-border` 등)
+- 흑백 (`text-white`, `bg-fg` 반전)
+
+**Yellow / Pink / Orange / Blue / non-brand Green 은 UI에서 절대 사용 금지.** 이 컬러들은 두 곳에서만 사용:
+1. 책 표지(공유 폴더 cover) — `src/lib/coverColors.ts` 의 5개 preset
+2. 리포트 데이터 시각화(버블 차트) — 카테고리/리액션별 hue 매핑 (`CATEGORY_TO_HUE`, `REACTION_TO_HUE`)
+
+```tsx
+// ✅ 좋음 — UI는 brand + neutrals
+<button className="bg-brand text-white hover:bg-brand-strong">새 폴더</button>
+
+// ❌ 나쁨 — UI에 액센트 컬러 사용
+<button className="bg-pink-400 text-white">새 폴더</button>
+
+// ✅ 좋음 — 책 커버는 액센트 컬러 OK
+<div style={{ backgroundColor: 'var(--pink-600)' }}>책 커버</div>
+```
+
+## 링크 저장 플로우
+
+1. 사용자가 폴더에서 "링크 추가" → **바텀시트**가 열리며 클립보드의 URL이 자동 붙여넣기됨
+2. URL 아래로 14개 카테고리 칩 (`src/lib/categories.ts`) 노출 — 한 개 선택 필수
+3. 폴더의 "주제" 는 가장 많이 저장된 카테고리로 자동 결정 (`pickDominantCategory()`)
+4. 폴더 만료 전까지: **단색 솔리드 책 커버** (`cover.status: 'solid'`, 5개 cover color 중 하나)
+5. 한 달 후 폴더 종료 시: 주제 기반 **일러스트 책 커버** 입혀짐 (`cover.status: 'illustrated'`)
+6. 사용자는 닫힌 책을 복제해 자신의 **책장(`/archive`)** 에 꽂음 — `ShelfFolder` 스냅샷
+
+## 레이아웃
+
+**모바일 반응형이 디폴트.** 모든 페이지가 모바일 컨테이너 너비(`--container-mobile` = 480px)로 가운데 정렬됩니다. 데스크탑/태블릿에서도 동일하게 좁은 컬럼이 가운데에 배치되고 양 옆은 빈 공간.
+
+| 클래스 | 용도 | max-width |
+|---|---|---|
+| `.mobile-canvas` | **기본** — 거의 모든 페이지가 사용 | 480px (모든 뷰포트) |
+| `.home-canvas`   | **홈(=/pair) 한 곳만 예외** — lg(≥1024px)에서 가로로 펼침 | 480px → lg+ 1280px |
+| `.canvas`        | **리포트(/pair/:id/report)에서만** 매거진 톤 | 1760px |
+
+```tsx
+// ✅ 기본
+<div className="mobile-canvas pt-8 pb-4">...</div>
+
+// ✅ 홈만 — lg+ 에서 자동으로 넓어짐
+<div className="home-canvas pt-8 pb-4">...</div>
+```
+
+## GNB
+
+좌측 사이드바/상단 탑바 없음. **화면 하단 중앙에 떠있는 floating Dock** 하나가 모든 페이지에 공통. `src/components/layout/Dock.tsx`.
+구성: `[홈] [+ 새 폴더] [책장] | [테마 토글]`. + 새 폴더만 brand 컬러, 나머지는 무채색.
+
+Dock 가 콘텐츠를 가리지 않도록 `AppShell` 이 `pb-dock` 여백을 자동 적용. 페이지에서 별도 처리 불필요.

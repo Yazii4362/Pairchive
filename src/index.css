@@ -1,0 +1,597 @@
+@import 'tailwindcss';
+
+/* =========================================================
+ * PAirchive Color System
+ *
+ * 6개 hue × 7 step 스케일. 라이트/다크 모드는 [data-theme]
+ * 속성으로 전환되며, 모든 색상은 CSS 변수 간접 참조라
+ * 모드 스왑 시 별도 클래스 변경 없이 자동 반영됩니다.
+ *
+ * UI 사용 원칙:
+ *   - Neutrals + Brand(green-400) + B/W 만 사용
+ *   - Yellow / Pink / Orange / Blue / Green의 비-브랜드 사용은
+ *     오로지 책 커버(공유 폴더 표지) 디자인에서만
+ *
+ * 7 step 의미:
+ *   50  : 가장 옅음 (Background)
+ *   100 : 옅은 배경 (Surface · Light)
+ *   200 : 서브 구분 (Subtle)
+ *   300 : 구분선 / 비활성 (Disabled)
+ *   400 : 브랜드 텍스트 / 아이콘 (Primary)
+ *   600 : 브랜드 텍스트 (Strong)
+ *   900 : 가장 진함 (Heading · Emphasis)
+ * ========================================================= */
+@theme {
+  /* ---------- Fonts ----------
+   * Pretendard 단일 가족으로 전 화면 통일 (한·영 모두).
+   *
+   * - sans  : Pretendard Variable. 본문/제목/UI 컴포넌트 전부 여기서.
+   * - mono  : 카운트/메타 라벨 (JetBrains Mono).
+   * - serif : Pretendard 로 통일하되, 매거진 톤이 필요할 땐 Cormorant Garamond 가
+   *           영문에 한해 시그니처(이탤릭)로 보이도록 함께 둠. 한글은 결국 Pretendard.
+   *           → 필요한 경우 토큰만 분리해서 다시 매거진 톤으로 되돌릴 수 있음.
+   */
+  --font-sans:
+    'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont,
+    system-ui, Roboto, 'Helvetica Neue', 'Segoe UI', 'Apple SD Gothic Neo',
+    'Noto Sans KR', 'Malgun Gothic', sans-serif;
+  --font-mono:
+    'JetBrains Mono', ui-monospace, 'SFMono-Regular', Menlo, Consolas,
+    monospace;
+  --font-serif:
+    'Pretendard Variable', Pretendard, 'Cormorant Garamond', ui-serif, Georgia,
+    serif;
+
+  /* ---------- Raw color scales (theme-aware via indirection) ---------- */
+  /*
+   * Tailwind v4가 이 변수들을 보고 bg-neutral-50, text-green-400, bg-pink-300
+   * 같은 유틸리티 클래스를 생성합니다. 실제 값은 :root / [data-theme='dark']
+   * 셀렉터에서 정의된 단축 변수(--neutral-50 등)를 따라갑니다.
+   */
+  --color-neutral-50: var(--neutral-50);
+  --color-neutral-100: var(--neutral-100);
+  --color-neutral-200: var(--neutral-200);
+  --color-neutral-300: var(--neutral-300);
+  --color-neutral-400: var(--neutral-400);
+  --color-neutral-600: var(--neutral-600);
+  --color-neutral-900: var(--neutral-900);
+
+  --color-yellow-50: var(--yellow-50);
+  --color-yellow-100: var(--yellow-100);
+  --color-yellow-200: var(--yellow-200);
+  --color-yellow-300: var(--yellow-300);
+  --color-yellow-400: var(--yellow-400);
+  --color-yellow-600: var(--yellow-600);
+  --color-yellow-900: var(--yellow-900);
+
+  --color-pink-50: var(--pink-50);
+  --color-pink-100: var(--pink-100);
+  --color-pink-200: var(--pink-200);
+  --color-pink-300: var(--pink-300);
+  --color-pink-400: var(--pink-400);
+  --color-pink-600: var(--pink-600);
+  --color-pink-900: var(--pink-900);
+
+  --color-green-50: var(--green-50);
+  --color-green-100: var(--green-100);
+  --color-green-200: var(--green-200);
+  --color-green-300: var(--green-300);
+  --color-green-400: var(--green-400);
+  --color-green-600: var(--green-600);
+  --color-green-900: var(--green-900);
+
+  --color-orange-50: var(--orange-50);
+  --color-orange-100: var(--orange-100);
+  --color-orange-200: var(--orange-200);
+  --color-orange-300: var(--orange-300);
+  --color-orange-400: var(--orange-400);
+  --color-orange-600: var(--orange-600);
+  --color-orange-900: var(--orange-900);
+
+  --color-blue-50: var(--blue-50);
+  --color-blue-100: var(--blue-100);
+  --color-blue-200: var(--blue-200);
+  --color-blue-300: var(--blue-300);
+  --color-blue-400: var(--blue-400);
+  --color-blue-600: var(--blue-600);
+  --color-blue-900: var(--blue-900);
+
+  /* ---------- Brand ---------- */
+  /* green-400은 라이트/다크 모두 동일하므로 alias로 노출합니다. */
+  --color-brand: var(--green-400);
+  --color-brand-strong: var(--green-600);
+  --color-brand-soft: var(--green-100);
+
+  /* ---------- Semantic tokens (theme-aware) ---------- */
+  --color-bg: var(--bg);
+  --color-bg-elevated: var(--bg-elevated);
+  --color-surface: var(--surface);
+  --color-surface-strong: var(--surface-strong);
+  --color-fg: var(--fg);
+  --color-fg-muted: var(--fg-muted);
+  --color-fg-subtle: var(--fg-subtle);
+  --color-border: var(--border);
+  --color-border-strong: var(--border-strong);
+
+  /* ---------- Radius / Shadow / Layout ---------- */
+  --radius-xs: 4px;
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+  --radius-xl: 20px;
+  --radius-2xl: 28px;
+
+  --shadow-card: 0 1px 2px rgb(10 10 10 / 0.04), 0 0 0 1px rgb(10 10 10 / 0.04);
+  --shadow-pop:
+    0 12px 32px -12px rgb(10 10 10 / 0.16), 0 0 0 1px rgb(10 10 10 / 0.06);
+  --shadow-cover:
+    0 14px 28px -16px rgb(10 10 10 / 0.35), 0 0 0 1px rgb(10 10 10 / 0.08);
+
+  /* Layout
+   * - container-mobile : 기본 컨테이너 (모든 화면). 모바일 ~ iPad 까지 그대로 가운데 정렬.
+   * - container-home   : 홈(=/pair) 전용 PC/태블릿 가로 레이아웃 (lg 이상에서만)
+   * - container-canvas : 리포트(매거진) 톤 한정 1920 풀스크린.
+   */
+  --container-mobile: 480px;
+  --container-home: 1280px;
+  --container-canvas: 1760px;
+
+  /* Dock GNB 위치/여백 */
+  --dock-bottom-offset: 1.5rem;
+  --dock-clearance: 6rem;
+
+  --ease-out-soft: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* =========================================================
+ * Light mode (default)
+ * 이미지의 Light Mode 컬러 보드를 기준으로 옮긴 값입니다.
+ * 정확한 hex가 다르면 이 블록에서만 수정하면 됩니다.
+ * ========================================================= */
+:root,
+[data-theme='light'] {
+  color-scheme: light;
+
+  /* Neutrals — 50:Background → 900:Heading */
+  --neutral-50: #faf9f7;
+  --neutral-100: #f4f2ee;
+  --neutral-200: #e9e6e1;
+  --neutral-300: #d6d4d1;
+  --neutral-400: #a8a5a6;
+  --neutral-600: #333333;
+  --neutral-900: #0a0a0a;
+
+  /* Yellow (Pear Yellow) */
+  --yellow-50: #fffde8;
+  --yellow-100: #fff58f;
+  --yellow-200: #ffe957;
+  --yellow-300: #ffd633;
+  --yellow-400: #ffc820;
+  --yellow-600: #d08200;
+  --yellow-900: #835800;
+
+  /* Pink (Archive Pink) */
+  --pink-50: #fff5f7;
+  --pink-100: #ffd6e8;
+  --pink-200: #ffb0d3;
+  --pink-300: #ff7ab7;
+  --pink-400: #ff4fa3;
+  --pink-600: #ba045f;
+  --pink-900: #602e68;
+
+  /* Green (Index Green) — 400 = Brand */
+  --green-50: #ebf7ee;
+  --green-100: #c2f1dd;
+  --green-200: #84e0bd;
+  --green-300: #3fc798;
+  --green-400: #18ba67;
+  --green-600: #209148;
+  --green-900: #0b6a31;
+
+  /* Orange (Story Orange) */
+  --orange-50: #fff8ea;
+  --orange-100: #ffd0c4;
+  --orange-200: #ffaa94;
+  --orange-300: #ff8063;
+  --orange-400: #ff5436;
+  --orange-600: #b81c2a;
+  --orange-900: #80320f;
+
+  /* Blue (Deep Blue) */
+  --blue-50: #eaf1ff;
+  --blue-100: #d6e4ff;
+  --blue-200: #a8c7ff;
+  --blue-300: #6e9cff;
+  --blue-400: #2568b8;
+  --blue-600: #1b4e8b;
+  --blue-900: #102067;
+
+  /* Semantic — 라이트 모드 */
+  --bg: var(--neutral-50);
+  --bg-elevated: #ffffff;
+  --surface: #ffffff;
+  --surface-strong: var(--neutral-100);
+  --fg: var(--neutral-900);
+  --fg-muted: var(--neutral-600);
+  --fg-subtle: var(--neutral-400);
+  --border: var(--neutral-200);
+  --border-strong: var(--neutral-300);
+
+  /* 책장 선반(plate) — 메인 책장 책 밑에 깔리는 따뜻한 wood/cream 면.
+     라이브러리의 부드러운 파스텔 톤과 호흡을 맞춤. */
+  --shelf-plate-top: #f4ead6;
+  --shelf-plate-mid: #e3d2ae;
+  --shelf-plate-bot: #c8b186;
+  --shelf-plate-highlight: rgb(255 255 255 / 0.55);
+  --shelf-plate-edge: rgb(60 40 18 / 0.18);
+  --shelf-plate-shadow: rgb(60 40 18 / 0.22);
+
+  /* 책 표지(spine) — Grainy gradient illustration 톤.
+     단색 대신 3-stop 부드러운 그라디언트 + 좌상 글로우.
+     hue 패밀리는 유지하되 채도를 한 호흡 낮춰 인쇄 결에 어울리도록. */
+
+  /* Pear — 노란/피치/앰버 (햇살 같은 베이지-옐로우) */
+  --cover-grad-pear-top: #ffe6a5;
+  --cover-grad-pear-mid: #f3aa55;
+  --cover-grad-pear-bot: #aa6a28;
+  --cover-grad-pear-glow: rgb(255 240 200 / 0.6);
+
+  /* Archive — 코랄/핑크/로즈 (첫 사진의 톤) */
+  --cover-grad-archive-top: #fcd9d3;
+  --cover-grad-archive-mid: #ef9a98;
+  --cover-grad-archive-bot: #a14c54;
+  --cover-grad-archive-glow: rgb(255 220 215 / 0.65);
+
+  /* Index — 민트/세이지/포레스트 (페어 그린 패밀리) */
+  --cover-grad-index-top: #cce6c6;
+  --cover-grad-index-mid: #71b178;
+  --cover-grad-index-bot: #2b6638;
+  --cover-grad-index-glow: rgb(220 240 220 / 0.55);
+
+  /* Story — 살구/탱고/러스트 (따뜻한 오렌지 패밀리) */
+  --cover-grad-story-top: #ffd2a7;
+  --cover-grad-story-mid: #ec8a56;
+  --cover-grad-story-bot: #9c4520;
+  --cover-grad-story-glow: rgb(255 224 196 / 0.65);
+
+  /* Deep — 라일락/스카이블루/네이비 */
+  --cover-grad-deep-top: #d2dcf2;
+  --cover-grad-deep-mid: #6b8bcd;
+  --cover-grad-deep-bot: #233660;
+  --cover-grad-deep-glow: rgb(220 230 250 / 0.55);
+
+  /* 책 spine grain 강도 — 첫 사진처럼 자글자글한 인쇄 결을 한 단계 더 살림. */
+  --cover-grain-strength: 0.32;
+}
+
+/* =========================================================
+ * Dark mode
+ * 이미지의 Dark Mode 컬러 보드 기준. 동일 step 이름이지만
+ * 값이 어두운/낮은 채도로 자동 스왑됩니다.
+ * ========================================================= */
+[data-theme='dark'] {
+  color-scheme: dark;
+
+  /* Neutrals — 다크 모드에서는 50이 가장 어둡고 900이 가장 밝습니다 */
+  --neutral-50: #0b0b0c;
+  --neutral-100: #121214;
+  --neutral-200: #1c1c1e;
+  --neutral-300: #2a2a2d;
+  --neutral-400: #5a5a5f;
+  --neutral-600: #b5b5b8;
+  --neutral-900: #ffffff;
+
+  /* Yellow */
+  --yellow-50: #2a2400;
+  --yellow-100: #4a3a00;
+  --yellow-200: #7a6300;
+  --yellow-300: #b48900;
+  --yellow-400: #ffd640;
+  --yellow-600: #ffdf6a;
+  --yellow-900: #fff2bf;
+
+  /* Pink */
+  --pink-50: #2e0a17;
+  --pink-100: #4b1021;
+  --pink-200: #5a1a36;
+  --pink-300: #8a2d54;
+  --pink-400: #c44092;
+  --pink-600: #ff7ab7;
+  --pink-900: #ffafcb;
+
+  /* Green — 400은 라이트와 동일한 브랜드 톤 유지 */
+  --green-50: #0c1f14;
+  --green-100: #133219;
+  --green-200: #1a4f2c;
+  --green-300: #1f8c46;
+  --green-400: #18ba67;
+  --green-600: #32a872;
+  --green-900: #7cff9f;
+
+  /* Orange */
+  --orange-50: #2a120a;
+  --orange-100: #3a1a12;
+  --orange-200: #6a2918;
+  --orange-300: #8b3823;
+  --orange-400: #e54c2a;
+  --orange-600: #ff8a56;
+  --orange-900: #ffb98a;
+
+  /* Blue */
+  --blue-50: #0e1224;
+  --blue-100: #0e1a37;
+  --blue-200: #1f2e51;
+  --blue-300: #2f4787;
+  --blue-400: #3568b8;
+  --blue-600: #6e9cff;
+  --blue-900: #c0d2ff;
+
+  /* Semantic — 다크 모드 */
+  --bg: var(--neutral-50);
+  --bg-elevated: var(--neutral-100);
+  --surface: var(--neutral-100);
+  --surface-strong: var(--neutral-200);
+  --fg: var(--neutral-900);
+  --fg-muted: var(--neutral-600);
+  --fg-subtle: var(--neutral-400);
+  --border: var(--neutral-200);
+  --border-strong: var(--neutral-300);
+
+  /* 책장 선반(plate) — 다크 모드. 어두운 wood 톤(짙은 호두). */
+  --shelf-plate-top: #2c2418;
+  --shelf-plate-mid: #1f1810;
+  --shelf-plate-bot: #120d07;
+  --shelf-plate-highlight: rgb(255 255 255 / 0.08);
+  --shelf-plate-edge: rgb(0 0 0 / 0.55);
+  --shelf-plate-shadow: rgb(0 0 0 / 0.6);
+
+  /* 책 표지(spine) — 다크 모드. 라이트와 같은 hue 가족이지만
+     자정의 인쇄소 톤처럼 한 단계 더 어둡게 가라앉음. */
+  --cover-grad-pear-top: #b88a3e;
+  --cover-grad-pear-mid: #7d5520;
+  --cover-grad-pear-bot: #3b2810;
+  --cover-grad-pear-glow: rgb(255 220 160 / 0.18);
+
+  --cover-grad-archive-top: #c47a78;
+  --cover-grad-archive-mid: #7e3a45;
+  --cover-grad-archive-bot: #341c25;
+  --cover-grad-archive-glow: rgb(255 200 200 / 0.18);
+
+  --cover-grad-index-top: #5c9469;
+  --cover-grad-index-mid: #2e6638;
+  --cover-grad-index-bot: #11331b;
+  --cover-grad-index-glow: rgb(190 230 200 / 0.16);
+
+  --cover-grad-story-top: #c87a4e;
+  --cover-grad-story-mid: #7a3a1d;
+  --cover-grad-story-bot: #2e160a;
+  --cover-grad-story-glow: rgb(255 210 180 / 0.2);
+
+  --cover-grad-deep-top: #6a82bc;
+  --cover-grad-deep-mid: #2d4170;
+  --cover-grad-deep-bot: #0e1730;
+  --cover-grad-deep-glow: rgb(210 220 250 / 0.18);
+
+  --cover-grain-strength: 0.38;
+}
+
+/* =========================================================
+ * Base styles
+ * ========================================================= */
+@layer base {
+  *,
+  *::before,
+  *::after {
+    border-color: var(--color-border);
+  }
+
+  html,
+  body,
+  #root {
+    height: 100%;
+  }
+
+  html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
+  body {
+    margin: 0;
+    font-family: var(--font-sans);
+    font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
+    background-color: var(--color-bg);
+    color: var(--color-fg);
+    letter-spacing: -0.011em;
+    transition:
+      background-color 200ms var(--ease-out-soft),
+      color 200ms var(--ease-out-soft);
+  }
+
+  ::selection {
+    background-color: var(--color-brand);
+    color: #ffffff;
+  }
+
+  :root {
+    font-size: 16px;
+  }
+  @media (max-width: 1280px) {
+    :root {
+      font-size: 15px;
+    }
+  }
+  @media (max-width: 768px) {
+    :root {
+      font-size: 14px;
+    }
+  }
+}
+
+/* =========================================================
+ * Utility primitives
+ * ========================================================= */
+@layer components {
+  /**
+   * 모든 페이지의 기본 컨테이너.
+   * 모바일/태블릿/PC 어디에서도 동일하게 가운데 정렬된 모바일 너비.
+   */
+  .mobile-canvas {
+    width: 100%;
+    max-width: var(--container-mobile);
+    margin-inline: auto;
+    padding-inline: 1.25rem;
+  }
+
+  /**
+   * 홈 전용 와이드 컨테이너 — lg(≥1024px) 이상에서만 활성.
+   * 작은 뷰포트에서는 자동으로 mobile-canvas 와 동일하게 동작.
+   */
+  .home-canvas {
+    width: 100%;
+    max-width: var(--container-mobile);
+    margin-inline: auto;
+    padding-inline: 1.25rem;
+  }
+  @media (min-width: 1024px) {
+    .home-canvas {
+      max-width: var(--container-home);
+      padding-inline: 3rem;
+    }
+  }
+
+  /**
+   * 매거진/리포트 톤의 1920 풀스크린 캔버스.
+   * 리포트(/pair/:id/report) 한정으로 사용.
+   */
+  .canvas {
+    width: 100%;
+    max-width: var(--container-canvas);
+    margin-inline: auto;
+    padding-inline: clamp(1.25rem, 4vw, 4rem);
+  }
+
+  /** Dock 가 화면 하단에서 콘텐츠를 가리지 않도록 줄 여백 클래스. */
+  .pb-dock {
+    padding-bottom: calc(var(--dock-bottom-offset) + var(--dock-clearance));
+  }
+
+  /** 리포트 애니메이션 클래스 — 인스턴스별 --dur/--delay/--lift 로 다양화 */
+  .animate-float-soft {
+    animation: float-soft var(--dur, 5s) ease-in-out var(--delay, 0s) infinite;
+  }
+  .animate-float-blob {
+    animation: float-blob var(--dur, 5.5s) ease-in-out var(--delay, 0s)
+      infinite;
+  }
+  .animate-pulse-dot {
+    animation: pulse-dot 2s ease-in-out infinite;
+  }
+
+  .hairline {
+    border: 1px solid var(--color-border);
+  }
+}
+
+/* =========================================================
+ * Report 애니메이션
+ *
+ * - float-soft : 카테고리 버블 / 하이라이트 카드 / 인사이트 블롭의
+ *   둥둥 떠다니는 효과. `--lift` 로 이동 폭, `--dur` 로 속도, `--delay` 로
+ *   지연을 인스턴스별로 다르게 줘 자연스러운 군무를 만듭니다.
+ * - pulse-dot  : AI 배지의 작은 그린 점이 호흡하듯 깜빡.
+ * ========================================================= */
+@keyframes float-soft {
+  0%,
+  100% {
+    transform: translateY(0) scale(1);
+  }
+  50% {
+    transform: translateY(var(--lift, -8px)) scale(1.01);
+  }
+}
+@keyframes float-blob {
+  0%,
+  100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  33% {
+    transform: translateY(-9px) rotate(1.2deg);
+  }
+  66% {
+    transform: translateY(-4px) rotate(-0.8deg);
+  }
+}
+@keyframes pulse-dot {
+  0%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.3;
+    transform: scale(0.6);
+  }
+}
+
+/* 바텀시트 진입 — 살짝 아래에서 올라오면서 페이드인 */
+@keyframes slide-up {
+  from {
+    transform: translateY(16%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+.animate-slide-up {
+  animation: slide-up 0.28s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+/* 바텀시트 오버레이 페이드 */
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+.animate-fade-in {
+  animation: fade-in 0.2s ease-out both;
+}
+
+/* 라이브러리 잠금 해제 배너 — 위에서 살짝 미끄러져 들어와 4s 머문 뒤 사라짐 */
+@keyframes banner-flash {
+  0% {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+  10% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  88% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+}
+.animate-banner-flash {
+  animation: banner-flash 4s ease both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [class*='animate-float'],
+  [class*='animate-pulse-dot'],
+  [class*='animate-slide-up'],
+  [class*='animate-fade-in'],
+  [class*='animate-banner-flash'] {
+    animation: none !important;
+  }
+}

@@ -1,0 +1,45 @@
+---
+description: PAirchive 브랜드 자산 — 로고 / 파비콘 / 이름 표기
+alwaysApply: true
+---
+
+# PAirchive Brand
+
+## 서비스 이름
+
+- 공식 표기: **PAirchive** (대문자 P, A, 나머지 소문자)
+- 어원: "Pair" + "Archive" — 둘이 함께 만드는 한 달짜리 링크 아카이브
+- 워드마크 로고에는 **"Pair"** 만 표시됨 (배 일러스트가 P 위에 오버레이)
+
+## 로고 자산
+
+- 라이트 모드: `public/brand/pair-light.png` (흰 배경 · 어두운 Pair 글씨 · 그린 배)
+- 다크 모드:  `public/brand/pair-dark.png`  (검정 배경 · 흰 Pair 글씨 · 그린 배)
+- 원본 합본: `public/brand/pair-original.png` (참고용, 코드에선 사용 금지)
+- 종횡비 약 1.10:1, `height` 기준으로 사용
+
+## 사용 규칙
+
+**`<Logo>` 컴포넌트만 사용** — `src/components/Logo.tsx`. 테마 변화 시 자동으로 라이트/다크 자산을 스왑합니다.
+
+```tsx
+// ✅ 좋음
+import { Logo } from '@/components/Logo';
+<Logo height={32} />
+
+// ❌ 나쁨 — 자산을 직접 임포트하면 다크 모드 전환이 안 됨
+<img src="/brand/pair-light.png" />
+
+// ❌ 나쁨 — "PAirchive" 텍스트를 로고 자리에 쓰지 마세요
+<span className="font-bold">PAirchive</span>
+```
+
+로고 클릭 시 항상 앱 메인(`/pair`) 또는 랜딩(`/`)으로 이동하도록 `<Link>` 로 감싸세요.
+
+## 파비콘
+
+`public/favicon.svg` — 단순화된 그린 배 실루엣(라이트/다크 탭 모두에서 동작). 가로형 워드마크는 정사각형 탭 아이콘에 안 맞아 별도 마크로 분리.
+
+## 컬러 정체성
+
+브랜드 컬러는 **`green-400` (`#18ba67`)** — 사용 시 `bg-brand` / `text-brand` / `border-brand` 토큰. 자세한 컬러 시스템은 `pairchive-design.mdc` 참조.

@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="PAirchive — 둘이 함께 만드는 한 달짜리 링크 아카이브"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
+    <!--
+      Pretendard — 한·영 본문/제목/메타 모두 한 가족으로. 가변형(Variable) 한 파일로 모든 weight 사용 가능.
+      참고: Inter / Noto Sans KR 가 백업 폴백으로 동작. JetBrains Mono / Cormorant Garamond 은
+      각각 mono 메타 라벨과 매거진 톤이 필요할 때 위해 남겨둡니다.
+    -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap"
+      rel="stylesheet"
+    />
+    <title>PAirchive · 둘이 모으는 링크 아카이브</title>
+    <script>
+      // FOUC 방지: React 부트 이전에 저장된 테마를 먼저 <html>에 적용합니다.
+      (function () {
+        try {
+          var saved = localStorage.getItem('pairchive:v1:theme');
+          var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          var theme = saved === 'light' || saved === 'dark' ? saved : prefersDark ? 'dark' : 'light';
+          document.documentElement.setAttribute('data-theme', theme);
+        } catch (_) {
+          document.documentElement.setAttribute('data-theme', 'light');
+        }
+      })();
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
