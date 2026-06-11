@@ -18,9 +18,9 @@ export function renderInviteLetter() {
     <header class="envelope-headline">
       <p class="envelope-headline__eyebrow">2026 · An Invitation</p>
       <p class="envelope-headline__line">
-        신비님이 함께 쌓고 싶은<br/>
-        한 권의 책에 담긴 마음을<br/>
-        열어보세요.
+        혼자 읽던 책을 함께<br/>
+        집필할 짝꿁에게<br/>
+        초대장을 보냅니다.
       </p>
     </header>
 

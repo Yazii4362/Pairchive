@@ -62,6 +62,17 @@ export function renderArchived() {
         <span class="chip" style="cursor:default;"><span class="chip__emoji">💡</span><span class="chip__count">야지</span></span>
         <span class="chip" style="cursor:default;"><span class="chip__emoji">🫶</span><span class="chip__count">두비·야지</span></span>
       </div>
+
+      <article class="ed-card" style="margin-top: 22px; display:flex; flex-direction:column; gap:8px; text-align:center;">
+        <p class="ed-section-label" style="font-size: 9px;">Sealed · 다음 한 권</p>
+        <p style="margin:0; font-family:var(--font-serif); font-size:16px; line-height:1.4; color:var(--ink);">
+          이 책은 아름답게 완성되었습니다.<br/>
+          두비님과 새로운 맛의 책을 한 권 더 묶어볼까요?
+        </p>
+        <button class="ed-btn ed-btn--block" type="button" data-go="edge-reopen" style="margin-top: 6px;">
+          ＋ 새 책 이어 만들기
+        </button>
+      </article>
     </div>
 
     <footer class="ed-footer" style="padding-top: 16px;">
